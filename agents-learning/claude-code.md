@@ -4,14 +4,41 @@
 
 
 
-
-
 # skills推荐
 
-- Frontend Design
-- Code Reviewer
+## Frontend Design
 
+> Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.
 
+**安装**
+
+```
+npx claude-code-templates@latest --skill creative-design/frontend-design
+```
+
+---
+
+## Code Reviewer
+
+> Comprehensive code review skill for TypeScript, JavaScript, Python, Swift, Kotlin, Go. Includes automated code analysis, best practice checking, security scanning, and review checklist generation. Use when reviewing pull requests, providing code feedback, identifying issues, or ensuring code quality standards.
+
+```
+npx claude-code-templates@latest --skill development/code-reviewer
+```
+
+---
+
+## clean-code
+
+> Pragmatic coding standards - concise, direct, no over-engineering, no unnecessary comments
+
+**安装**
+
+```
+npx claude-code-templates@latest --skill development/clean-code
+```
+
+---
 
 
 
