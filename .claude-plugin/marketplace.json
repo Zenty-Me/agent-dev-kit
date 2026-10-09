@@ -1,0 +1,86 @@
+{
+  "name": "skills-prompts",
+  "owner": {
+    "name": "Zenty-Me"
+  },
+  "metadata": {
+    "description": "精选的 AI 协同开发 skill 合集：编码准则、代码审查、设计规划、前端、后端与数据库、写作",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "coding-standards",
+      "description": "编码准则：Karpathy LLM 编码行为准则、Clean Code 规范",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/karpathy-guidelines",
+        "./skills/clean-code"
+      ]
+    },
+    {
+      "name": "code-quality",
+      "description": "代码质量：代码审查、重构建议、安全最佳实践审查",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/code-reviewer",
+        "./skills/refactor-advisor",
+        "./skills/security-best-practices"
+      ]
+    },
+    {
+      "name": "planning",
+      "description": "设计与规划：头脑风暴、方案追问、draw.io 架构图",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/brainstorming",
+        "./skills/grill-me",
+        "./skills/drawio-skill"
+      ]
+    },
+    {
+      "name": "frontend",
+      "description": "前端：视觉设计、Next.js、React 最佳实践与组合模式",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/frontend-design",
+        "./skills/nextjs",
+        "./skills/react-best-practices",
+        "./skills/vercel-react-best-practices",
+        "./skills/vercel-composition-patterns"
+      ]
+    },
+    {
+      "name": "backend",
+      "description": "后端与数据库：Supabase、Postgres 最佳实践、Python 性能优化",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/supabase",
+        "./skills/supabase-postgres-best-practices",
+        "./skills/python-performance-optimization"
+      ]
+    },
+    {
+      "name": "writing",
+      "description": "写作：去掉文字里的 AI 腔，保持原意",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/humanizer"
+      ]
+    },
+    {
+      "name": "skill-dev",
+      "description": "Skill 开发：创建、改进、评测 skill",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/skill-creator"
+      ]
+    }
+  ]
+}
