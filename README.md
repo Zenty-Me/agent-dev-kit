@@ -1,21 +1,25 @@
-# Skills & Prompts
+# Agent Dev Kit
 
-AI 协同开发工具箱：精选的 Claude Code skill、可复用的提示词，以及 AI 编码工具的使用笔记。
+AI 协同开发工具箱：精选 Claude Code / Agent skills、实用插件与可复用提示词，以及 AI 编码工具的使用笔记。
 
-- **skills/**：从各官方仓库挑选的开发类 skill，可以作为 Claude Code 插件市场一键安装
-- **prompts/**：可直接当系统提示词使用的角色提示词
-- **plugins/**：推荐的 Claude Code 插件清单和安装方式
-- **agents-learning/**：Claude Code、Hermes 等 AI 编码工具的使用笔记
+> 仓库由 `skills-prompts` 更名为 `agent-dev-kit`；GitHub 会对旧路径做重定向，新安装请用下方命令。
+
+| 目录 | 内容 |
+|---|---|
+| **skills/** | 从各官方仓库精选的开发类 skill，可通过 Claude Code 插件市场一键安装 |
+| **plugins/** | 推荐的 Claude Code 插件清单（不存源码，只记安装方式） |
+| **prompts/** | 可直接当系统提示词使用的角色提示词 |
+| **agents-learning/** | Claude Code、Hermes 等工具的使用笔记 |
 
 ## 项目结构
 
 ```
-skills-prompts/
+agent-dev-kit/
 ├── .claude-plugin/
-│   └── marketplace.json   # Claude Code 插件市场配置，按用途把 skill 分成 7 个插件
+│   └── marketplace.json   # Claude Code 插件市场配置（按用途分成 7 个插件）
 ├── skills/                # skill 定义（每个目录一个 skill）
+├── plugins/               # 推荐插件清单与安装方式
 ├── prompts/               # 提示词模板
-├── plugins/               # 插件清单与安装方式
 ├── agents-learning/       # AI 编码工具使用笔记
 └── scripts/
     └── sync-skills.sh     # 从本机同步 skill 到仓库
@@ -26,34 +30,34 @@ skills-prompts/
 ### 方式一：Claude Code 插件市场（推荐）
 
 ```bash
-/plugin marketplace add Zenty-Me/skills-prompts
+/plugin marketplace add Zenty-Me/agent-dev-kit
 ```
 
-然后按需安装插件：
+然后按需安装插件（marketplace 名为 `agent-dev-kit`）：
 
 | 插件 | 包含的 skill |
 |---|---|
-| `coding-standards@skills-prompts` | karpathy-guidelines、clean-code |
-| `code-quality@skills-prompts` | code-reviewer、refactor-advisor、security-best-practices、security-threat-model、code-simplification、test-driven-development、systematic-debugging |
-| `planning@skills-prompts` | brainstorming、grill-me、drawio-skill |
-| `frontend@skills-prompts` | frontend-design、nextjs、react-best-practices、vercel-react-best-practices、vercel-composition-patterns、web-design-guidelines、vercel-react-view-transitions |
-| `backend@skills-prompts` | supabase、supabase-postgres-best-practices、python-performance-optimization |
-| `writing@skills-prompts` | humanizer |
-| `skill-dev@skills-prompts` | skill-creator、mcp-builder |
+| `coding-standards@agent-dev-kit` | karpathy-guidelines、clean-code |
+| `code-quality@agent-dev-kit` | code-reviewer、refactor-advisor、security-best-practices、security-threat-model、code-simplification、test-driven-development、systematic-debugging |
+| `planning@agent-dev-kit` | brainstorming、grill-me、drawio-skill |
+| `frontend@agent-dev-kit` | frontend-design、nextjs、react-best-practices、vercel-react-best-practices、vercel-composition-patterns、web-design-guidelines、vercel-react-view-transitions |
+| `backend@agent-dev-kit` | supabase、supabase-postgres-best-practices、python-performance-optimization |
+| `writing@agent-dev-kit` | humanizer |
+| `skill-dev@agent-dev-kit` | skill-creator、mcp-builder |
 
 ```bash
-/plugin install frontend@skills-prompts
+/plugin install frontend@agent-dev-kit
 ```
 
-更新：`/plugin marketplace update skills-prompts`。
+更新：`/plugin marketplace update agent-dev-kit`。
 
 ### 方式二：skills CLI
 
 支持 Claude Code、Codex、Cursor 等多种 AI 工具：
 
 ```bash
-npx skills add Zenty-Me/skills-prompts                      # 交互式选择
-npx skills add Zenty-Me/skills-prompts -s karpathy-guidelines -g   # 全局安装单个 skill
+npx skills add Zenty-Me/agent-dev-kit                      # 交互式选择
+npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装单个 skill
 ```
 
 ### 方式三：手动复制
@@ -107,7 +111,7 @@ npx skills add Zenty-Me/skills-prompts -s karpathy-guidelines -g   # 全局安�
 
 ## 使用笔记
 
-- [Claude Code](agents-learning/claude-code.md)：资源站点、skill 推荐与安装
+- [Claude Code](agents-learning/claude-code.md)：资源站点、skill / 插件推荐与安装
 - [Hermes](agents-learning/hermes.md)：常用命令（模型配置、会话管理）
 
 ## 维护

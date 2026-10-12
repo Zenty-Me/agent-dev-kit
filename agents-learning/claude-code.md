@@ -15,6 +15,10 @@
 ```bash
 /plugin marketplace add anthropics/claude-plugins-official
 /plugin install feature-dev@claude-plugins-official
+
+# 本仓库精选 skills（marketplace 名 agent-dev-kit）
+/plugin marketplace add Zenty-Me/agent-dev-kit
+/plugin install frontend@agent-dev-kit
 ```
 
 # 其他 Agent（Codex / Cursor）可复用来源

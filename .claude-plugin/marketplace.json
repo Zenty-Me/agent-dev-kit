@@ -1,10 +1,10 @@
 {
-  "name": "skills-prompts",
+  "name": "agent-dev-kit",
   "owner": {
     "name": "Zenty-Me"
   },
   "metadata": {
-    "description": "精选的 AI 协同开发 skill 合集：编码准则、代码审查、设计规划、前端、后端与数据库、写作、Skill/MCP 开发",
+    "description": "AI 协同开发工具箱：精选 Claude Code / Agent skills、实用插件与可复用提示词",
     "version": "1.1.0"
   },
   "plugins": [
