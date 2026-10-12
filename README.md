@@ -160,4 +160,4 @@ npx skills update -g -y            # 从官方源更新本机 skill
 ./scripts/check-consistency.sh
 ```
 
-可选 CI：将 [scripts/check-consistency.workflow.example.yml](scripts/check-consistency.workflow.example.yml) 复制为 `.github/workflows/check-consistency.yml` 后推送（需具备 GitHub `workflow` 权限的 token）。
+CI：push 到 main 或提 PR 时，[.github/workflows/check-consistency.yml](.github/workflows/check-consistency.yml) 会自动跑该检查。
