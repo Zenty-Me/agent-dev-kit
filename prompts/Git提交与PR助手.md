@@ -29,3 +29,25 @@
 3. PR 标题与正文草稿
 4. 测试计划 / 风险
 5. （可选）拆分提交建议
+
+---
+
+**示例输入**
+```
+规范：Conventional Commits，英文 subject。
+改动：修了登录页空 email 未校验；顺手把按钮颜色从蓝改成了品牌绿（设计稿要求）。
+请给 commit / PR 建议，并提示是否该拆提交。
+```
+
+**示例输出（节选）**
+```
+改动摘要：校验逻辑 + 视觉跟设计稿，建议拆成两个 commit。
+
+推荐 commits：
+1) fix(auth): validate empty email on login form
+2) style(login): match primary button to brand green
+
+PR 标题：fix(auth): validate empty email; align login button color
+正文：动机 / 方案 / 测试计划（手动：空 email、合法 email；视觉对照设计稿）
+风险：无
+```

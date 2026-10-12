@@ -1,0 +1,15 @@
+# 示例：复制为 .github/workflows/check-consistency.yml 后启用 CI
+name: Check skill consistency
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run consistency check
+        run: ./scripts/check-consistency.sh

@@ -22,7 +22,8 @@ agent-dev-kit/
 ├── prompts/               # 提示词模板
 ├── agents-learning/       # AI 编码工具使用笔记
 ├── scripts/
-│   └── sync-skills.sh     # 从本机同步 skill 到仓库
+│   ├── sync-skills.sh         # 从本机同步 skill 到仓库
+│   └── check-consistency.sh   # skills ≡ marketplace ≡ README 校验
 └── LICENSE                # 本仓库原创内容（skills 仍归各自上游）
 ```
 
@@ -116,6 +117,8 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 | [安全审计专家](prompts/安全审计专家.md) | 应用安全审查：威胁、评级与可落地修复建议 |
 | [资深前端工程师](prompts/资深前端工程师.md) | React/Next 等实现与评审：状态、性能、a11y |
 | [SQL与数据建模专家](prompts/SQL与数据建模专家.md) | 表结构设计、SQL 编写与优化、迁移注意点 |
+| [API与后端设计专家](prompts/API与后端设计专家.md) | HTTP/RPC 契约、错误/分页/鉴权与兼容演进 |
+| [CI与CD流水线顾问](prompts/CI与CD流水线顾问.md) | GitHub Actions 等：测试门禁、构建发布与可维护 CI |
 | [Git提交与PR助手](prompts/Git提交与PR助手.md) | 整理 commit message、PR 正文与拆分建议 |
 | [技术写作专家](prompts/技术写作专家.md) | README / 设计文档 / API 说明等清晰可执行文稿 |
 | [产品经理](prompts/产品经理.md) | 用户故事、验收标准、优先级与迭代规格 |
@@ -150,3 +153,11 @@ npx skills update -g -y            # 从官方源更新本机 skill
 1. `.claude-plugin/marketplace.json` 对应插件的 `skills` 列表
 2. 上文「安装 Skills」插件表与「Skills 列表」
 3. 各 skill 目录下的 `LICENSE`（从上游同步）
+
+然后跑一致性检查：
+
+```bash
+./scripts/check-consistency.sh
+```
+
+可选 CI：将 [scripts/check-consistency.workflow.example.yml](scripts/check-consistency.workflow.example.yml) 复制为 `.github/workflows/check-consistency.yml` 后推送（需具备 GitHub `workflow` 权限的 token）。

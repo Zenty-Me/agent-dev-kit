@@ -67,30 +67,43 @@
 
 ### 工具与集成
 
+先装「日常必装」，再按技术栈补「按需」。星标为大多数开发仓库的默认起点（约 12 个）。
+
+#### 日常必装（★ 推荐）
+
 | 插件 | 说明 |
 |---|---|
-| `commit-commands@claude-plugins-official` | git 提交、推送、创建 PR 的快捷命令 |
-| `github@claude-plugins-official` | GitHub MCP：Issue/PR/代码搜索与仓库操作 |
+| ★ `github@claude-plugins-official` | GitHub MCP：Issue/PR/代码搜索与仓库操作 |
+| ★ `commit-commands@claude-plugins-official` | git 提交、推送、创建 PR 的快捷命令 |
+| ★ `context7@claude-plugins-official` | 查询最新库文档（MCP，远程托管） |
+| ★ `playwright@claude-plugins-official` | 浏览器自动化与端到端测试（MCP） |
+| ★ `serena@claude-plugins-official` | 语义代码分析 MCP（LSP）：理解、导航与重构建议 |
+| ★ `typescript-lsp@claude-plugins-official` | TS/JS 语言智能（前端/Node 项目几乎都要） |
+| ★ `pyright-lsp@claude-plugins-official` | Python 语言智能（有 Python 再装） |
+| ★ `vercel@claude-plugins-official` | Vercel 部署/构建/日志（用 Vercel 再装） |
+| ★ `sentry@claude-plugins-official` | 生产报错与栈追踪（已接 Sentry 再装） |
+| ★ `figma@claude-plugins-official` | 读设计文件与 token，辅助落地 UI |
+| ★ `notion@claude-plugins-official` | 搜页面、写文档、管知识库 |
+| ★ `linear@claude-plugins-official` | 事务跟踪（团队用 Linear 时） |
+
+> `typescript-lsp` / `pyright-lsp` 与下文「语言智能」表重复列出，是为了把「第一天该装什么」收在一处；其余语言 LSP 仍见专表。
+
+#### 按需（栈相关 / 少用场景）
+
+| 插件 | 说明 |
+|---|---|
 | `gitlab@claude-plugins-official` | GitLab：仓库、MR、CI/CD、Issue、Wiki |
-| `playwright@claude-plugins-official` | 浏览器自动化与端到端测试（MCP） |
-| `context7@claude-plugins-official` | 查询最新库文档（MCP，远程托管） |
-| `serena@claude-plugins-official` | 语义代码分析 MCP（LSP）：理解、导航与重构建议 |
-| `linear@claude-plugins-official` | Linear 事务跟踪：建 issue、管项目、改状态 |
-| `atlassian@claude-plugins-official` | Jira / Confluence：搜建 issue、读文档、管 sprint |
-| `notion@claude-plugins-official` | Notion：搜页面、写文档、管数据库与知识库 |
-| `figma@claude-plugins-official` | Figma：读设计文件、组件与 token，辅助落地代码 |
-| `vercel@claude-plugins-official` | Vercel：部署、构建状态、日志、域名 |
+| `atlassian@claude-plugins-official` | Jira / Confluence |
 | `cloudflare@claude-plugins-official` | Cloudflare：Workers、DO、Agents SDK、Wrangler 等 |
 | `firebase@claude-plugins-official` | Firebase：Firestore、Auth、Functions、Hosting、Storage |
-| `prisma@claude-plugins-official` | Prisma Postgres：schema 迁移、SQL、连接串与开通库 |
-| `terraform@claude-plugins-official` | Terraform MCP：IaC 自动化与生态交互 |
-| `sentry@claude-plugins-official` | Sentry：看报错、栈追踪、按 fingerprint 搜 issue |
-| `datadog@claude-plugins-official` | Datadog：日志、指标、链路、看板（MCP） |
-| `stripe@claude-plugins-official` | Stripe 支付集成开发 |
-| `expo@claude-plugins-official` | Expo / React Native：构建、部署、升级与调试 |
-| `laravel-boost@claude-plugins-official` | Laravel：Artisan、Eloquent、路由、迁移等智能辅助 |
-| `firecrawl@claude-plugins-official` | 网页抓取/爬取为干净 Markdown 或结构化数据 |
-| `exa@claude-plugins-official` | Exa 网页搜索、深度研究与内容抽取 |
+| `prisma@claude-plugins-official` | Prisma Postgres：schema 迁移、SQL、连接串 |
+| `terraform@claude-plugins-official` | Terraform MCP：IaC |
+| `datadog@claude-plugins-official` | Datadog：日志、指标、链路、看板 |
+| `stripe@claude-plugins-official` | Stripe 支付集成 |
+| `expo@claude-plugins-official` | Expo / React Native |
+| `laravel-boost@claude-plugins-official` | Laravel 智能辅助 |
+| `firecrawl@claude-plugins-official` | 网页抓取为 Markdown / 结构化数据 |
+| `exa@claude-plugins-official` | Exa 网页搜索与深度研究 |
 
 ### 语言智能（LSP）
 

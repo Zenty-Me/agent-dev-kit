@@ -8,6 +8,7 @@
 #   1) .claude-plugin/marketplace.json 对应插件的 skills 列表
 #   2) README.md 安装表与 Skills 列表
 #   3) 各 skill 目录下的 LICENSE（从上游同步）
+# 然后运行：./scripts/check-consistency.sh
 set -euo pipefail
 
 repo_dir="$(cd "$(dirname "$0")/.." && pwd)"
@@ -32,3 +33,5 @@ for name in "${names[@]}"; do
   find "$repo_dir/skills/$name" -name __pycache__ -prune -exec rm -rf {} +
   echo "已同步 $name"
 done
+
+echo "提示：同步后请运行 ./scripts/check-consistency.sh，并视情况更新 marketplace.json / README。"
