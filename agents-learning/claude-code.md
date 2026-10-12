@@ -4,6 +4,28 @@
 
 
 
+
+
+# 本仓库插件清单（推荐优先看这里）
+
+精选、按用途分类的 Claude Code 插件见 [../plugins/README.md](../plugins/README.md)（官方 marketplace、wshobson/agents、planning-with-files、ponytail 等）。
+
+安装示例：
+
+```bash
+/plugin marketplace add anthropics/claude-plugins-official
+/plugin install feature-dev@claude-plugins-official
+```
+
+# 其他 Agent（Codex / Cursor）可复用来源
+
+多数 Agent Skills 标准 skill 可在 Claude Code、Codex、Cursor 间复用（例如 `npx skills add <repo>`）。本仓库 `skills/` 已精选一批；更多列表不必全量搬入仓库：
+
+- [openai/skills](https://github.com/openai/skills) — Codex 官方 skills 目录
+- [composio-community/awesome-codex-skills](https://github.com/composio-community/awesome-codex-skills) — Codex 实用 skills 精选
+- [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) — 多 harness 社区合集（质量参差，需挑）
+- [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)、[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) — 已有条目收录进本仓库 `skills/`
+
 # skills推荐
 
 ## Frontend Design

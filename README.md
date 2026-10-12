@@ -103,7 +103,7 @@ npx skills add Zenty-Me/skills-prompts -s karpathy-guidelines -g   # 全局安�
 
 ## Plugins
 
-推荐的 Claude Code 插件（开发流程、代码审查、浏览器测试、文档查询等）见 [plugins/README.md](plugins/README.md)。
+推荐的 Claude Code 插件（开发流程、代码审查与质量、工具集成、LSP、技能开发等，以及 Codex/Cursor 可复用来源）见 [plugins/README.md](plugins/README.md)。
 
 ## 使用笔记
 
