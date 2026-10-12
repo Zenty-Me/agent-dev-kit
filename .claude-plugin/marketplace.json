@@ -5,17 +5,18 @@
   },
   "metadata": {
     "description": "AI 协同开发工具箱：精选 Claude Code / Agent skills、实用插件与可复用提示词",
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "plugins": [
     {
       "name": "coding-standards",
-      "description": "编码准则：Karpathy LLM 编码行为准则、Clean Code 规范",
+      "description": "编码与写作准则：Karpathy LLM 编码行为准则、Clean Code、去 AI 腔写作",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/karpathy-guidelines",
-        "./skills/clean-code"
+        "./skills/clean-code",
+        "./skills/humanizer"
       ]
     },
     {
@@ -35,24 +36,24 @@
     },
     {
       "name": "planning",
-      "description": "设计与规划：头脑风暴、方案追问、draw.io 架构图",
+      "description": "设计与规划：头脑风暴、方案追问（grill-me / grilling）、draw.io 架构图",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/brainstorming",
         "./skills/grill-me",
+        "./skills/grilling",
         "./skills/drawio-skill"
       ]
     },
     {
       "name": "frontend",
-      "description": "前端：视觉设计、Next.js、React 最佳实践与组合模式、Web 界面指南、View Transitions",
+      "description": "前端：视觉设计、Next.js、Vercel React 最佳实践与组合模式、Web 界面指南、View Transitions",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/frontend-design",
         "./skills/nextjs",
-        "./skills/react-best-practices",
         "./skills/vercel-react-best-practices",
         "./skills/vercel-composition-patterns",
         "./skills/web-design-guidelines",
@@ -68,15 +69,6 @@
         "./skills/supabase",
         "./skills/supabase-postgres-best-practices",
         "./skills/python-performance-optimization"
-      ]
-    },
-    {
-      "name": "writing",
-      "description": "写作：去掉文字里的 AI 腔，保持原意",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./skills/humanizer"
       ]
     },
     {

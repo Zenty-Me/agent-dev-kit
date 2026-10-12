@@ -133,7 +133,7 @@
 | `learning-output-style@claude-plugins-official` | 交互式学习：在决策点要求你动手写关键代码 |
 | `session-report@claude-plugins-official` | 从本地会话日志生成用量 HTML 报告（token、缓存、贵提示等） |
 
-`skill-creator`、`frontend-design`、`supabase`、`postgres-best-practices` 在本仓库 `skills/` 下也有同名 skill，二选一即可。
+`skill-creator`、`frontend-design`、`supabase`、`postgres-best-practices`、以及本仓库 `coding-standards` 中的 `humanizer` 等，与官方/上游 marketplace 可能同名，二选一即可。
 
 ## 其他 harness 上值得关注的来源
 

@@ -16,13 +16,14 @@ AI 协同开发工具箱：精选 Claude Code / Agent skills、实用插件与�
 ```
 agent-dev-kit/
 ├── .claude-plugin/
-│   └── marketplace.json   # Claude Code 插件市场配置（按用途分成 7 个插件）
-├── skills/                # skill 定义（每个目录一个 skill）
+│   └── marketplace.json   # Claude Code 插件市场配置（按用途分成 6 个插件）
+├── skills/                # skill 定义（每个目录一个 skill；含各自 LICENSE）
 ├── plugins/               # 推荐插件清单与安装方式
 ├── prompts/               # 提示词模板
 ├── agents-learning/       # AI 编码工具使用笔记
-└── scripts/
-    └── sync-skills.sh     # 从本机同步 skill 到仓库
+├── scripts/
+│   └── sync-skills.sh     # 从本机同步 skill 到仓库
+└── LICENSE                # 本仓库原创内容（skills 仍归各自上游）
 ```
 
 ## 安装 Skills
@@ -37,12 +38,11 @@ agent-dev-kit/
 
 | 插件 | 包含的 skill |
 |---|---|
-| `coding-standards@agent-dev-kit` | karpathy-guidelines、clean-code |
+| `coding-standards@agent-dev-kit` | karpathy-guidelines、clean-code、humanizer |
 | `code-quality@agent-dev-kit` | code-reviewer、refactor-advisor、security-best-practices、security-threat-model、code-simplification、test-driven-development、systematic-debugging |
-| `planning@agent-dev-kit` | brainstorming、grill-me、drawio-skill |
-| `frontend@agent-dev-kit` | frontend-design、nextjs、react-best-practices、vercel-react-best-practices、vercel-composition-patterns、web-design-guidelines、vercel-react-view-transitions |
+| `planning@agent-dev-kit` | brainstorming、grill-me、grilling、drawio-skill |
+| `frontend@agent-dev-kit` | frontend-design、nextjs、vercel-react-best-practices、vercel-composition-patterns、web-design-guidelines、vercel-react-view-transitions |
 | `backend@agent-dev-kit` | supabase、supabase-postgres-best-practices、python-performance-optimization |
-| `writing@agent-dev-kit` | humanizer |
 | `skill-dev@agent-dev-kit` | skill-creator、mcp-builder |
 
 ```bash
@@ -68,21 +68,22 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 
 | 分类 | Skill | 说明 | 来源 |
 |---|---|---|---|
-| 编码准则 | `karpathy-guidelines` | 基于 Andrej Karpathy 观察总结的 LLM 编码行为准则 | forrestchang/andrej-karpathy-skills |
+| 编码与写作准则 | `karpathy-guidelines` | 基于 Andrej Karpathy 观察总结的 LLM 编码行为准则 | forrestchang/andrej-karpathy-skills |
 | | `clean-code` | 简洁直接的编码规范，不过度设计 | vudovn/ag-kit |
-| 代码质量 | `code-reviewer` | 关注安全、性能和最佳实践的代码审查 | awesome-llm-apps |
-| | `refactor-advisor` | 识别代码坏味道并给出重构方案 | — |
+| | `humanizer` | 去掉文字里的 AI 腔，读起来像本人写的，不改变原意 | blader/humanizer |
+| 代码质量 | `code-reviewer` | 关注安全、性能和最佳实践的代码审查 | awesome-llm-apps（Shubhamsaboo 等） |
+| | `refactor-advisor` | 识别代码坏味道并给出重构方案 | 本仓库原创 |
 | | `security-best-practices` | 按语言和框架做安全最佳实践审查 | openai/skills |
 | | `security-threat-model` | 基于仓库证据的威胁建模（信任边界、滥用路径、缓解） | openai/skills |
 | | `code-simplification` | 在不改变行为的前提下简化代码、提升可读性 | addyosmani/agent-skills |
 | | `test-driven-development` | 红绿重构驱动开发与缺陷修复 | addyosmani/agent-skills |
 | | `systematic-debugging` | 先根因再修复的系统化调试流程 | obra/superpowers |
 | 设计与规划 | `brainstorming` | 动手前的头脑风暴与需求澄清 | obra/superpowers |
-| | `grill-me` | 通过连续追问打磨方案或设计（仅能用 `/grill-me` 手动触发） | mattpocock/skills |
+| | `grill-me` | 手动触发入口（`/grill-me`）；内部调用 `grilling` | mattpocock/skills |
+| | `grilling` | 按设计树多轮追问，打磨方案或决策 | mattpocock/skills |
 | | `drawio-skill` | 生成可编辑的 draw.io 架构图、UML、ERD、时序图 | Agents365-ai/drawio-skill |
 | 前端 | `frontend-design` | 有辨识度的前端视觉设计 | anthropics/skills |
-| | `nextjs` | Next.js App Router 开发指导 | — |
-| | `react-best-practices` | TSX 组件质量检查清单 | — |
+| | `nextjs` | Next.js App Router 开发指导（含本地 overlay） | openai/plugins（vercel/nextjs） |
 | | `vercel-react-best-practices` | Vercel 的 React/Next.js 性能优化指南 | vercel-labs/agent-skills |
 | | `vercel-composition-patterns` | React 组件组合模式 | vercel-labs/agent-skills |
 | | `web-design-guidelines` | 按 Web Interface Guidelines 审查 UI/可访问性/UX | vercel-labs/agent-skills |
@@ -90,11 +91,14 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 | 后端与数据库 | `supabase` | Supabase 开发 | supabase/agent-skills |
 | | `supabase-postgres-best-practices` | Postgres 最佳实践 | supabase/agent-skills |
 | | `python-performance-optimization` | Python 性能分析与优化 | wshobson/agents |
-| 写作 | `humanizer` | 去掉文字里的 AI 腔，读起来像本人写的，不改变原意 | blader/humanizer |
 | Skill 开发 | `skill-creator` | 创建、改进、评测 skill | anthropics/skills |
 | | `mcp-builder` | 设计并实现高质量 MCP server（Python/TS） | anthropics/skills |
 
-各 skill 的版权归原作者所有，许可证见各目录下的 LICENSE 文件或 SKILL.md 中的 `license` 字段。
+**版权与许可证**
+
+- 根目录 [LICENSE](LICENSE)（MIT）覆盖本仓库**原创**内容：`README`、`prompts/`、`plugins/`、`scripts/`、marketplace 配置，以及本仓库原创 skill（如 `refactor-advisor`）。
+- `skills/` 下各 skill **版权归原作者**；许可证以各目录 `LICENSE` / `LICENSE.txt` 为准，并参考 `SKILL.md` 的 `license` 字段。收录与再分发请遵守对应上游条款。
+- 已去掉与 `vercel-react-best-practices` 重复的旧 `react-best-practices` 打包；前端性能规则以 Vercel 官方 skill 为准。
 
 ## Prompts
 
@@ -128,7 +132,7 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 
 ## 使用笔记
 
-- [Claude Code](agents-learning/claude-code.md)：资源站点、skill / 插件推荐与安装
+- [Claude Code](agents-learning/claude-code.md)：优先用本仓库 / 官方 marketplace 安装；附资源站点
 - [Hermes](agents-learning/hermes.md)：常用命令（模型配置、会话管理）
 
 ## 维护
@@ -137,8 +141,12 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 
 ```bash
 npx skills update -g -y            # 从官方源更新本机 skill
-scripts/sync-skills.sh             # 同步 skills/ 下已有的全部 skill
-scripts/sync-skills.sh nextjs      # 只同步指定 skill
+./scripts/sync-skills.sh           # 同步 skills/ 下已有的全部 skill
+./scripts/sync-skills.sh nextjs    # 只同步指定 skill
 ```
 
-新增 skill 时，除了复制目录，还要把它加进 `.claude-plugin/marketplace.json` 对应的插件和上面的列表。
+`sync-skills.sh` **只复制** `~/.claude/skills`（或 `CLAUDE_SKILLS_DIR`）里的目录内容。新增或下线 skill 时，还须**手动**更新：
+
+1. `.claude-plugin/marketplace.json` 对应插件的 `skills` 列表
+2. 上文「安装 Skills」插件表与「Skills 列表」
+3. 各 skill 目录下的 `LICENSE`（从上游同步）
