@@ -131,7 +131,7 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 
 ## Plugins
 
-推荐的 Claude Code 插件（开发流程、代码审查与质量、工具集成、LSP、技能开发、Agent 使用体验（状态栏/用量/通知/记忆/多会话）等，以及 Codex/Cursor 可复用来源）见 [plugins/README.md](plugins/README.md)。
+[plugins/README.md](plugins/README.md) 按 agent 分区，收录 **Claude Code、Codex、Pi、Cursor、Gemini CLI、OpenCode** 的插件和扩展。每个分区写明该 agent 的扩展机制、推荐条目和安装命令；另有一节支持多种 agent 的通用工具（记忆、通知、多会话管理）。
 
 ## 使用笔记
 
