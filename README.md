@@ -131,7 +131,7 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 
 ## Plugins
 
-推荐的 Claude Code 插件（开发流程、代码审查与质量、工具集成、LSP、技能开发等，以及 Codex/Cursor 可复用来源）见 [plugins/README.md](plugins/README.md)。
+推荐的 Claude Code 插件（开发流程、代码审查与质量、工具集成、LSP、技能开发、Agent 使用体验（状态栏/用量/通知/记忆/多会话）等，以及 Codex/Cursor 可复用来源）见 [plugins/README.md](plugins/README.md)。
 
 ## 使用笔记
 

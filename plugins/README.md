@@ -148,6 +148,26 @@
 
 `skill-creator`、`frontend-design`、`supabase`、`postgres-best-practices`、以及本仓库 `coding-standards` 中的 `humanizer` 等，与官方/上游 marketplace 可能同名，二选一即可。
 
+## Agent 使用体验
+
+用来改善 Claude Code / Codex 等日常体验的工具：状态栏、用量、通知、记忆、多会话。大多数是独立 CLI 或 hooks，不是 `claude-plugins-official` 的条目。★ 为最推荐。已在上文列出的官方体验类插件（`session-report`、输出风格、`hookify`、`claude-md-management`）这里不再重复。
+
+| 工具 | 来源 | 说明 | 安装 / 启用 |
+|---|---|---|---|
+| ★ ccstatusline | [sirmalloc/ccstatusline](https://github.com/sirmalloc/ccstatusline) | 可高度自定义的状态栏（模型、上下文用量、git 分支、费用、powerline 主题） | `npx -y ccstatusline@latest` 进入交互式配置，自动写入 `~/.claude/settings.json` 的 `statusLine` |
+| claude-powerline | [Owloops/claude-powerline](https://github.com/Owloops/claude-powerline) | vim 风格 powerline 状态栏，偏向开箱即用的主题 | `/plugin marketplace add Owloops/claude-powerline` → `/plugin install claude-powerline@claude-powerline` |
+| ★ ccusage | [ccusage/ccusage](https://github.com/ccusage/ccusage) | 读取本地日志，按日/月/会话/5 小时窗口统计 token 和费用 | `npx ccusage@latest`（如 `npx ccusage@latest daily`、`blocks --live`） |
+| Claude Code Usage Monitor | [Maciek-roboblog/Claude-Code-Usage-Monitor](https://github.com/Maciek-roboblog/Claude-Code-Usage-Monitor) | 终端实时额度看板，预测何时用完并提前告警 | `uv tool install claude-monitor`（或 `pip install claude-monitor`），运行 `claude-monitor` |
+| ★ claude-mem | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | 跨会话记忆：记录会话、压缩，并在之后的会话里注入相关上下文 | `npx claude-mem install`（其他 IDE 加 `--ide <name>`） |
+| agent-notifications | [777genius/agent-notifications](https://github.com/777genius/agent-notifications) | 任务完成或需要确认时发桌面通知/声音/webhook，支持 Claude、Codex、OpenCode、Gemini | `curl -fsSL https://agent-notifications.com/install.sh \| bash`（安装时选择 agent） |
+| ★ claude-squad | [smtg-ai/claude-squad](https://github.com/smtg-ai/claude-squad) | 在 TUI 里管理多个 agent 会话，每个任务一个独立 git worktree | `brew install claude-squad`，在仓库内运行 `cs` |
+| ccmanager | [kbwo/ccmanager](https://github.com/kbwo/ccmanager) | 多 agent 会话与 worktree 管理器（Claude/Codex/Gemini/Cursor Agent 等） | `npm install -g ccmanager` 或 `npx ccmanager` |
+| CloudCLI（Claude Code UI） | [siteboon/claudecodeui](https://github.com/siteboon/claudecodeui) | 在网页/手机上远程查看和操控 Claude Code、Codex、Cursor CLI 会话 | `npx @cloudcli-ai/cloudcli` |
+| opcode | [winfunc/opcode](https://github.com/winfunc/opcode) | Claude Code 桌面 GUI：管理会话、自定义 agent、查看用量、浏览会话历史 | 从 GitHub Releases 下载，或按 README 从源码构建 |
+| claude-code-viewer | [d-kimuson/claude-code-viewer](https://github.com/d-kimuson/claude-code-viewer) | Web 客户端：浏览和恢复历史会话，并在网页中继续对话 | `npx @kimuson/claude-code-viewer@latest --port 3400` |
+
+> 状态栏同时只能生效一个（`ccstatusline` 和 `claude-powerline` 二选一）。hooks 类工具（通知、记忆）安装时会改 `~/.claude/settings.json`，装之前先备份。
+
 ## 其他 harness 上值得关注的来源
 
 本仓库的 `skills/` 主要服务 Claude Code 插件市场，但不少 skill 也兼容 Codex / Cursor（`npx skills add` 等）。不必硬塞进本仓库结构的来源可记在这里：
