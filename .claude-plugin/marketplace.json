@@ -4,8 +4,8 @@
     "name": "Zenty-Me"
   },
   "metadata": {
-    "description": "精选的 AI 协同开发 skill 合集：编码准则、代码审查、设计规划、前端、后端与数据库、写作",
-    "version": "1.0.0"
+    "description": "精选的 AI 协同开发 skill 合集：编码准则、代码审查、设计规划、前端、后端与数据库、写作、Skill/MCP 开发",
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -20,13 +20,17 @@
     },
     {
       "name": "code-quality",
-      "description": "代码质量：代码审查、重构建议、安全最佳实践审查",
+      "description": "代码质量：代码审查、重构建议、安全与威胁建模、简化、TDD、系统化调试",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/code-reviewer",
         "./skills/refactor-advisor",
-        "./skills/security-best-practices"
+        "./skills/security-best-practices",
+        "./skills/security-threat-model",
+        "./skills/code-simplification",
+        "./skills/test-driven-development",
+        "./skills/systematic-debugging"
       ]
     },
     {
@@ -42,7 +46,7 @@
     },
     {
       "name": "frontend",
-      "description": "前端：视觉设计、Next.js、React 最佳实践与组合模式",
+      "description": "前端：视觉设计、Next.js、React 最佳实践与组合模式、Web 界面指南、View Transitions",
       "source": "./",
       "strict": false,
       "skills": [
@@ -50,7 +54,9 @@
         "./skills/nextjs",
         "./skills/react-best-practices",
         "./skills/vercel-react-best-practices",
-        "./skills/vercel-composition-patterns"
+        "./skills/vercel-composition-patterns",
+        "./skills/web-design-guidelines",
+        "./skills/vercel-react-view-transitions"
       ]
     },
     {
@@ -75,11 +81,12 @@
     },
     {
       "name": "skill-dev",
-      "description": "Skill 开发：创建、改进、评测 skill",
+      "description": "Skill / MCP 开发：创建评测 skill、构建高质量 MCP server",
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/skill-creator"
+        "./skills/skill-creator",
+        "./skills/mcp-builder"
       ]
     }
   ]

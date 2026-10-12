@@ -34,12 +34,12 @@ skills-prompts/
 | 插件 | 包含的 skill |
 |---|---|
 | `coding-standards@skills-prompts` | karpathy-guidelines、clean-code |
-| `code-quality@skills-prompts` | code-reviewer、refactor-advisor、security-best-practices |
+| `code-quality@skills-prompts` | code-reviewer、refactor-advisor、security-best-practices、security-threat-model、code-simplification、test-driven-development、systematic-debugging |
 | `planning@skills-prompts` | brainstorming、grill-me、drawio-skill |
-| `frontend@skills-prompts` | frontend-design、nextjs、react-best-practices、vercel-react-best-practices、vercel-composition-patterns |
+| `frontend@skills-prompts` | frontend-design、nextjs、react-best-practices、vercel-react-best-practices、vercel-composition-patterns、web-design-guidelines、vercel-react-view-transitions |
 | `backend@skills-prompts` | supabase、supabase-postgres-best-practices、python-performance-optimization |
 | `writing@skills-prompts` | humanizer |
-| `skill-dev@skills-prompts` | skill-creator |
+| `skill-dev@skills-prompts` | skill-creator、mcp-builder |
 
 ```bash
 /plugin install frontend@skills-prompts
@@ -69,6 +69,10 @@ npx skills add Zenty-Me/skills-prompts -s karpathy-guidelines -g   # 全局安�
 | 代码质量 | `code-reviewer` | 关注安全、性能和最佳实践的代码审查 | awesome-llm-apps |
 | | `refactor-advisor` | 识别代码坏味道并给出重构方案 | — |
 | | `security-best-practices` | 按语言和框架做安全最佳实践审查 | openai/skills |
+| | `security-threat-model` | 基于仓库证据的威胁建模（信任边界、滥用路径、缓解） | openai/skills |
+| | `code-simplification` | 在不改变行为的前提下简化代码、提升可读性 | addyosmani/agent-skills |
+| | `test-driven-development` | 红绿重构驱动开发与缺陷修复 | addyosmani/agent-skills |
+| | `systematic-debugging` | 先根因再修复的系统化调试流程 | obra/superpowers |
 | 设计与规划 | `brainstorming` | 动手前的头脑风暴与需求澄清 | obra/superpowers |
 | | `grill-me` | 通过连续追问打磨方案或设计（仅能用 `/grill-me` 手动触发） | mattpocock/skills |
 | | `drawio-skill` | 生成可编辑的 draw.io 架构图、UML、ERD、时序图 | Agents365-ai/drawio-skill |
@@ -77,11 +81,14 @@ npx skills add Zenty-Me/skills-prompts -s karpathy-guidelines -g   # 全局安�
 | | `react-best-practices` | TSX 组件质量检查清单 | — |
 | | `vercel-react-best-practices` | Vercel 的 React/Next.js 性能优化指南 | vercel-labs/agent-skills |
 | | `vercel-composition-patterns` | React 组件组合模式 | vercel-labs/agent-skills |
+| | `web-design-guidelines` | 按 Web Interface Guidelines 审查 UI/可访问性/UX | vercel-labs/agent-skills |
+| | `vercel-react-view-transitions` | React View Transition API 与路由/共享元素动画 | vercel-labs/agent-skills |
 | 后端与数据库 | `supabase` | Supabase 开发 | supabase/agent-skills |
 | | `supabase-postgres-best-practices` | Postgres 最佳实践 | supabase/agent-skills |
 | | `python-performance-optimization` | Python 性能分析与优化 | wshobson/agents |
 | 写作 | `humanizer` | 去掉文字里的 AI 腔，读起来像本人写的，不改变原意 | blader/humanizer |
 | Skill 开发 | `skill-creator` | 创建、改进、评测 skill | anthropics/skills |
+| | `mcp-builder` | 设计并实现高质量 MCP server（Python/TS） | anthropics/skills |
 
 各 skill 的版权归原作者所有，许可证见各目录下的 LICENSE 文件或 SKILL.md 中的 `license` 字段。
 
