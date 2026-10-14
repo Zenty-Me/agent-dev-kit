@@ -5,6 +5,7 @@
 - **自助安装**：把 [pi-bootstrap.md](pi-bootstrap.md) 整段提示词丢给 Pi
 - **长跑 / Ralph / goal**：细节只看 [autonomous-iteration.md](autonomous-iteration.md)
 - **AGENTS.md 通用写法**：[project-instructions.md](project-instructions.md)
+- **跨 harness 互调**：[cross-agent.md](cross-agent.md)
 
 ## 前置
 
@@ -97,6 +98,8 @@ pi install npm:billion-context
 2. **Skill 激活时切模型**：`pi install npm:@felipefontoura/pi-skill-model-handoff`，Skill 的 `SKILL.md` frontmatter 写 `model:` / `thinking:`，加载 Skill 时自动切换 — [文章](https://felipefontoura.com/articles/pi-skill-model-handoff/)。
 
 社区常见：强模型规划、中档改码、轻量跑腿。对比 Claude Code 的 `opusplan` 见 [claude-code.md](claude-code.md)。
+
+跨 harness（Claude / Codex / Pi 互调）没有原生子 agent，要把对方包成工具：见 [cross-agent.md](cross-agent.md)。
 
 ## 第二档：按需体验（别进核心）
 

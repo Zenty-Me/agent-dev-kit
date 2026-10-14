@@ -140,6 +140,7 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 - [Pi 自助 bootstrap](agents-learning/pi-bootstrap.md)：可直接丢给 Pi 的安装配置提示词
 - [AGENTS.md / CLAUDE.md 写法](agents-learning/project-instructions.md)：短硬可验证的项目指令文件
 - [自主持续迭代](agents-learning/autonomous-iteration.md)：可验证终点 + 落盘状态 + 循环（Pi goal / circadian、Claude Ralph）
+- [跨 agent 调用](agents-learning/cross-agent.md)：跨 harness 把对方包成工具（CLI / MCP / 桥）
 - [Hermes](agents-learning/hermes.md)：常用命令（模型配置、会话管理）
 
 ## 维护

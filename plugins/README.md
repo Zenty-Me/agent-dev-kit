@@ -386,7 +386,7 @@
 
 ## 跨 agent 通用工具
 
-同时支持多种 agent 的工具，按各自 README 的说明标出支持范围。
+同时支持多种 agent 的工具，按各自 README 的说明标出支持范围。跨 harness 互调（CLI / MCP / 桥）见 [cross-agent.md](../agents-learning/cross-agent.md)。
 
 | 工具 | 来源 | 支持的 agent | 说明 | 安装 |
 |---|---|---|---|---|
