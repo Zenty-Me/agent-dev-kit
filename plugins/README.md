@@ -311,6 +311,10 @@
 | [@juicesharp/rpiv-todo](https://www.npmjs.com/package/@juicesharp/rpiv-todo) + [rpiv-ask-user-question](https://www.npmjs.com/package/@juicesharp/rpiv-ask-user-question) | todo 浮层 + 结构化追问 | 见下表安装命令 |
 | [pi-background-tasks](https://www.npmjs.com/package/pi-background-tasks) | 长跑 shell / 后台委派 | `pi install npm:pi-background-tasks` |
 | [@gotgenes/pi-permission-system](https://www.npmjs.com/package/@gotgenes/pi-permission-system) | 工具调用权限闸 | `pi install npm:@gotgenes/pi-permission-system` |
+| [pi-agent-extensions](https://www.npmjs.com/package/pi-agent-extensions) | 界面扩展合集 + 主题；`/settings` 选 Theme，主题也可放 `~/.pi/agent/themes/` | `pi install npm:pi-agent-extensions` |
+| [pi-long-task](https://www.npmjs.com/package/pi-long-task) / [pi.dev 文档](https://pi.dev/packages/pi-long-task) | 长任务：拆 TODO、子会话执行、TUI 进度；自然语言 *Run a long task…* | `pi install npm:pi-long-task` |
+| [pi-async-compaction](https://www.npmjs.com/package/pi-async-compaction) | 长会话后台异步压缩摘要（可选） | `pi install npm:pi-async-compaction` |
+| [pi-longrun](https://www.npmjs.com/package/pi-longrun) | 后台任务与定时唤醒（可选） | `pi install npm:pi-longrun` |
 
 ### 其他常用包
 
