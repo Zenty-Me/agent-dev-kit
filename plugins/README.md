@@ -286,6 +286,8 @@
 | 全栈备选 | [@mrclrchtr/supi-code-intelligence](https://www.npmjs.com/package/@mrclrchtr/supi-code-intelligence) | LSP + AST 导航/诊断/重构（与 pi-lens 二选一即可） | `pi install npm:@mrclrchtr/supi-code-intelligence` |
 | 长会话推荐（按需） | [billion-context](https://www.npmjs.com/package/billion-context) / [billion-context-pi](https://www.npmjs.com/package/billion-context-pi) | 上下文压缩（月下载高）；社区有反馈长会话仍会忘，**优先试内置 `/compact`** | `pi install npm:billion-context` 或 `billion-context-pi` |
 
+更完整的省 Token / 多环境 / 作者习惯见 [agents-learning/pi.md](../agents-learning/pi.md)「社区实操习惯」。
+>
 > **社区常驻做减法（X，约 2026-10-09～10-13）：** 很多人只锁 `pi-web-access` + `pi-context-view`（可选再加 `pi-cc-extensions`）。`pi-lens` 建议 **项目级** `pi install -l npm:pi-lens`，别全局常开。长会话优先内置 `/compact`；`billion-context` / `billion-context-pi` 有人反馈仍会忘，勿当银弹。
 >
 > 日常够用 = web +（内置 MCP 或 adapter 二选一）+ subagents。全栈再加 browser/chrome +（lens 项目级）+ 按需 vision。别一口气堆包。
@@ -315,6 +317,10 @@
 | [pi-long-task](https://www.npmjs.com/package/pi-long-task) / [pi.dev 文档](https://pi.dev/packages/pi-long-task) | 长任务：拆 TODO、子会话执行、TUI 进度；自然语言 *Run a long task…* | `pi install npm:pi-long-task` |
 | [pi-async-compaction](https://www.npmjs.com/package/pi-async-compaction) | 长会话后台异步压缩摘要（可选） | `pi install npm:pi-async-compaction` |
 | [pi-longrun](https://www.npmjs.com/package/pi-longrun) | 后台任务与定时唤醒（可选） | `pi install npm:pi-longrun` |
+| [pi-code-render](https://www.npmjs.com/package/pi-code-render) | transcript 代码块美化渲染 | `pi install npm:pi-code-render` |
+| [pi-better-render](https://www.npmjs.com/package/pi-better-render) | 流式 Markdown/代码/公式渲染（不进上下文） | `pi install npm:pi-better-render` |
+| [pi-automode-classifier](https://www.npmjs.com/package/pi-automode-classifier) | Auto mode：危险命令分级确认 | `pi install npm:pi-automode-classifier` |
+| [sol-pi](https://www.npmjs.com/package/sol-pi) / [@herbertgao/sol-pi](https://www.npmjs.com/package/@herbertgao/sol-pi) | 省上下文类扩展（社区常称 SoL-Pi） | `pi install npm:sol-pi` 等 |
 
 ### 其他常用包
 
