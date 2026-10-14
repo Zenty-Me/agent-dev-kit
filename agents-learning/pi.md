@@ -1,8 +1,10 @@
-# Pi 使用笔记
+# Pi 使用手册（总稿）
 
-以 Pi 作主生产力时的安装、核心包与配置落点。包清单见 [../plugins/README.md](../plugins/README.md) 的 Pi 章节（核实：2026-10-14）。目录：[pi.dev/packages](https://pi.dev/packages)。
+以 Pi 作主生产力时的经验与技巧总稿：安装、分层、省上下文、核心包与配置落点。包清单见 [../plugins/README.md](../plugins/README.md) 的 Pi 章节（核实：2026-10-14）。目录：[pi.dev/packages](https://pi.dev/packages)。
 
-想让 Pi **自己装完**：把 [pi-bootstrap.md](pi-bootstrap.md) 整段提示词丢给它即可。
+- **自助安装**：把 [pi-bootstrap.md](pi-bootstrap.md) 整段提示词丢给 Pi
+- **长跑 / Ralph / goal**：细节只看 [autonomous-iteration.md](autonomous-iteration.md)
+- **AGENTS.md 通用写法**：[project-instructions.md](project-instructions.md)
 
 ## 前置
 
@@ -30,6 +32,20 @@ pi
 | `/resume` | 恢复会话 |
 | `/new` | 新会话 |
 
+更新已装包：`pi update --all`。
+
+## 分层（社区共识）
+
+三层各管一件事，别混塞（[Chasen 分层](https://x.com/chasen_liao/status/2105501788753559689)；Skills 官方：[Skills](https://pi.dev/docs/latest/skills)）：
+
+| 层 | 放什么 | 不放什么 |
+|---|---|---|
+| **`AGENTS.md`** | 短、硬、难从仓库猜到的约定（禁令、命令、坑） | 通用教程、长流程说明书 |
+| **Skills** | 按需流程；启动只挂 name/description，用到再读全文；可 `/skill:name` 强制 | 常驻大段系统提示 |
+| **Packages / 扩展** | 控制面：工具、TUI、MCP、浏览器等 | 本该写进 AGENTS/Skill 的散文规则 |
+
+深目录：子树可再放嵌套 `AGENTS.md`，配 [`pi-context-breadcrumbs`](https://pi.dev/packages/pi-context-breadcrumbs)（进子路径时按需加载更窄规则）。通用写法仍链 [project-instructions.md](project-instructions.md)。
+
 ## 核心增强（必装）
 
 ```bash
@@ -41,7 +57,7 @@ pi install npm:pi-context-view # 看清上下文占用（社区常驻推荐）
 # pi install npm:pi-mcp-adapter &&  # 然后 /mcp-adapter setup
 ```
 
-社区（含 X 近几天热帖）经验：日常常驻做减法 — **web-access + context-view**（可选 `pi-cc-extensions`）+ subagents；多装只会抢上下文。用 `pi config` 开关扩展。
+**小墨常驻约三件套**（[帖](https://x.com/xiaomovps/status/2109857660904394878)）：`pi-cc-extensions` / `pi-web-access` / `pi-context-view`；其余按场景再开。日常也可加 `pi-subagents`；多装只会抢上下文。用 `pi config` 开关扩展。选型参考：[小墨插件选型](https://x.com/xiaomovps/status/2109819392783687798)。
 
 **勿双开：** 内置 MCP ↔ `pi-mcp-adapter` ↔ `pi-mcp-extension`；`pi-subagents` ↔ `@tintinweb/pi-subagents`；`pi-browser-use` ↔ `pi-chrome`。
 
@@ -62,7 +78,7 @@ pi install -l npm:pi-lens                  # 边写边验；建议项目级 -l�
 
 MCP 建议经 adapter 接：Context7（框架文档）、GitHub；Notion / Gmail 按需。
 
-长任务拆法：scout 摸结构 → worker 改 → reviewer 查。
+长任务拆法：scout 摸结构 → worker 改 → reviewer 查（或 `pi-long-task` / `pi_goal_task`；长跑细节见 [autonomous-iteration.md](autonomous-iteration.md)）。
 
 ### 长会话推荐（仍按需）
 
@@ -87,27 +103,27 @@ pi install npm:billion-context
 | `pi-memory` | 跨会话记忆 | `pi install npm:pi-memory` |
 | `@narumitw/pi-plan-mode` 或 `@hank-warren/pi-plan-mode` | 只读规划（二选一） | `pi install npm:@narumitw/pi-plan-mode` |
 | `@juicesharp/rpiv-todo` + `rpiv-ask-user-question` | todo 浮层 + 结构化追问 | 见 plugins 清单 |
+| `pi-ask-user` | 决策闸：交互式 `ask_user`（选项 / 多选 / 自由输入） | `pi install npm:pi-ask-user` |
+| `pi-context-breadcrumbs` | 深目录嵌套 `AGENTS.md` 按路径加载 | `pi install npm:pi-context-breadcrumbs` |
 | `pi-background-tasks` | 长跑 shell / 后台任务 | `pi install npm:pi-background-tasks` |
 | `@gotgenes/pi-permission-system` | 工具调用权限闸 | `pi install npm:@gotgenes/pi-permission-system` |
 | `pi-agent-extensions` | 界面扩展 + 主题（`/settings` → Theme；主题也可放 `~/.pi/agent/themes/`） | `pi install npm:pi-agent-extensions` |
-| `pi-long-task` | 长任务拆 TODO、子会话跑、TUI 进度；说 *Run a long task…*；自主迭代做法见 [autonomous-iteration.md](autonomous-iteration.md) | `pi install npm:pi-long-task` |
+| `pi-long-task` | 长任务拆 TODO、子会话跑、TUI 进度；说 *Run a long task…*；自主迭代见 [autonomous-iteration.md](autonomous-iteration.md) | `pi install npm:pi-long-task` |
 | `pi-async-compaction` / `pi-longrun` | 异步压缩 / 后台任务与定时唤醒（可选） | 见 npm 包名 |
 
 主题文档：[Themes](https://pi.dev/docs/latest/themes)；长任务：[pi-long-task](https://pi.dev/packages/pi-long-task)；跨夜续跑与 goal 循环见 [自主持续迭代](autonomous-iteration.md)。
 
 观测（Langfuse / LangSmith / Braintrust）与状态栏等见 plugins「其他常用包」。X 热帖参考：[小墨常驻组合](https://x.com/xiaomovps/status/2109857660904394878)、[观测选型](https://x.com/xiaomovps/status/2109901724634997127)、[oliviscusAI 起步包](https://x.com/oliviscusAI/status/2109836779042054267)。
 
-## 社区实操习惯（X，核实：2026-10-14）
+## 省上下文
 
-主要来自 [小墨同学 @xiaomovps](https://x.com/xiaomovps) 与 Pi 作者 [Mario @badlogicgames](https://x.com/badlogicgames) 的公开帖；装扩展前仍以 [pi.dev/packages](https://pi.dev/packages) 与本地试跑为准。
-
-### 省 Token / 保持轻量
+主要来自 [小墨同学 @xiaomovps](https://x.com/xiaomovps) 与 Pi 作者 [Mario @badlogicgames](https://x.com/badlogicgames)；装扩展前仍以 [pi.dev/packages](https://pi.dev/packages) 与本地试跑为准。[省 token 帖](https://x.com/xiaomovps/status/2108832780121719107)
 
 1. **自己看的命令用 `!!`**，别把大段输出塞进模型上下文（[例](https://x.com/xiaomovps/status/2099732591557619746)）
-2. **`AGENTS.md` 只放长期规则**；流程做成 Skill，用到再加载
-3. **插件少装，按任务开**；低频能力优先 Skill，不要全局堆包
-4. **长任务分阶段 Compact**，旧日志该丢就丢（[例](https://x.com/xiaomovps/status/2102433994516115727)）
-5. **扩展演进顺序**：先手动跑通 → Skill → Extension → Package（[例](https://x.com/xiaomovps/status/2108172672488378588)）
+2. **少装常驻**：小墨约三件套 `pi-cc-extensions` / `pi-web-access` / `pi-context-view`；其余按任务开；低频能力优先 Skill，不要全局堆包
+3. **`AGENTS.md` 只放长期硬规则**；流程做成 Skill，用到再加载（见上方「分层」）
+4. **长任务分阶段 `/compact`**，旧日志该丢就丢（[例](https://x.com/xiaomovps/status/2102433994516115727)）
+5. **可试 SoL-Pi / `context-mode`**：`sol-pi` / `@herbertgao/sol-pi`（社区常称 NVIDIA SoL-Pi）；另有 [`context-mode`](https://pi.dev/packages/context-mode) 做会话连续与上下文压缩（与 SoL-Pi 不同包，按需二选一或试用）
 6. **多环境**：用 `PI_CODING_AGENT_DIR` 切配置目录，别一套插件打天下（[例](https://x.com/xiaomovps/status/2099387424745169301)）
 
 ### 作者与常用命令
@@ -124,10 +140,24 @@ pi install npm:billion-context
 | `pi-code-render` | transcript 里代码块卡片渲染 + 一键复制 | `pi install npm:pi-code-render` |
 | `pi-better-render` | 流式 Markdown / 代码 / 公式美化（仅显示，不进上下文） | `pi install npm:pi-better-render` |
 | `pi-automode-classifier` | Auto mode：规则 → 本地决策模型 → 再确认危险操作 | `pi install npm:pi-automode-classifier` |
-| `sol-pi` / `@herbertgao/sol-pi` | 社区提到的省上下文 / SoL 类扩展（npm 名如上；X 上常说「NVIDIA SoL-Pi」，以实际包名为准） | `pi install npm:sol-pi` 或 `npm:@herbertgao/sol-pi` |
+| `sol-pi` / `@herbertgao/sol-pi` | 省上下文 / SoL 类扩展（以实际包名为准） | `pi install npm:sol-pi` 或 `npm:@herbertgao/sol-pi` |
+| `context-mode` | 会话连续 / 上下文压缩（与 SoL-Pi 不同） | 见 [pi.dev/packages/context-mode](https://pi.dev/packages/context-mode) |
 
 完整第二档表见 [../plugins/README.md](../plugins/README.md)。
 
+## 演进与互斥
+
+1. **演进顺序**：手跑通 → Skill → Extension → Package（可打包分享配置）（[例](https://x.com/xiaomovps/status/2108172672488378588)）
+2. **勿双开**（同上）：内置 MCP ↔ adapter / `pi-mcp-extension`；subagents 双源；`pi-browser-use` ↔ `pi-chrome`
+3. **决策闸**：[`pi-ask-user`](https://pi.dev/packages/pi-ask-user)（高风险 / 歧义任务强制问人）；同类还有 `@juicesharp/rpiv-ask-user-question`
+4. **观测**：Langfuse / LangSmith / Braintrust — 短提，包名与安装见 [../plugins/README.md](../plugins/README.md)「其他常用包」
+5. **接 Antigravity**：走**官方 ACP**（如 `pi-antigravity-acp-provider` / bridge 的 ACP 路径），别逆向 OAuth、别复用非官方 token 抓取
+
+## 操作速记
+
+- 快捷键 / `/compact` / `/resume`：见上方表格；包更新：`pi update --all`
+- 重活：scout → worker → reviewer，或 `pi-long-task` / `pi_goal_task`
+- 长跑、goal 循环、circadian、Claude Ralph：**只链** [autonomous-iteration.md](autonomous-iteration.md)，此处不复述一整章
 
 ## 终端渲染
 
@@ -189,9 +219,12 @@ pi install npm:billion-context
 
 通用写法（短、硬、分层）见 [project-instructions.md](project-instructions.md)。
 
-
 - 技术栈与主要目录（前端 / 后端 / 共享包）
 - 如何起前后端（命令、端口、依赖）
 - 测试与 lint 命令
 - 数据库迁移与 env / secret 约定（哪些文件勿提交、本地怎么配）
 
+## 参考
+
+- X：[小墨插件选型](https://x.com/xiaomovps/status/2109819392783687798)、[常驻三件套](https://x.com/xiaomovps/status/2109857660904394878)、[省 token](https://x.com/xiaomovps/status/2108832780121719107)、[Chasen 分层](https://x.com/chasen_liao/status/2105501788753559689)
+- 文档：[Skills](https://pi.dev/docs/latest/skills)、[packages](https://pi.dev/packages)

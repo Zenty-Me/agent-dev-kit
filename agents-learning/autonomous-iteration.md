@@ -13,6 +13,8 @@
 
 ## Pi
 
+起步与省上下文总稿见 [pi.md](pi.md)；本节只写长跑 / goal。
+
 ### pi-long-task / `pi_goal_task`
 
 ```bash

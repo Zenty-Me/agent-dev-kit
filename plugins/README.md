@@ -286,9 +286,9 @@
 | 全栈备选 | [@mrclrchtr/supi-code-intelligence](https://www.npmjs.com/package/@mrclrchtr/supi-code-intelligence) | LSP + AST 导航/诊断/重构（与 pi-lens 二选一即可） | `pi install npm:@mrclrchtr/supi-code-intelligence` |
 | 长会话推荐（按需） | [billion-context](https://www.npmjs.com/package/billion-context) / [billion-context-pi](https://www.npmjs.com/package/billion-context-pi) | 上下文压缩（月下载高）；社区有反馈长会话仍会忘，**优先试内置 `/compact`** | `pi install npm:billion-context` 或 `billion-context-pi` |
 
-更完整的省 Token / 多环境 / 作者习惯见 [agents-learning/pi.md](../agents-learning/pi.md)「社区实操习惯」。
+更完整的分层 / 省上下文 / 演进 / 操作速记见 [agents-learning/pi.md](../agents-learning/pi.md)（使用手册总稿）。
 >
-> **社区常驻做减法（X，约 2026-10-09～10-13）：** 很多人只锁 `pi-web-access` + `pi-context-view`（可选再加 `pi-cc-extensions`）。`pi-lens` 建议 **项目级** `pi install -l npm:pi-lens`，别全局常开。长会话优先内置 `/compact`；`billion-context` / `billion-context-pi` 有人反馈仍会忘，勿当银弹。
+> **社区常驻做减法（X，约 2026-10-09～10-14）：** 小墨常驻约三件套 `pi-cc-extensions` / `pi-web-access` / `pi-context-view`；也可只锁后两者。`pi-lens` 建议 **项目级** `pi install -l npm:pi-lens`，别全局常开。长会话优先内置 `/compact`；`billion-context` / SoL-Pi 等按需。经验详 [pi.md](../agents-learning/pi.md)。
 >
 > 日常够用 = web +（内置 MCP 或 adapter 二选一）+ subagents。全栈再加 browser/chrome +（lens 项目级）+ 按需 vision。别一口气堆包。
 >
