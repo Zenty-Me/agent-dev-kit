@@ -94,12 +94,18 @@ pi install npm:billion-context
 
 本体**没有** Claude Code 式 `opusplan` 一键切换；规划用强模型、干活用便宜/快模型，靠子代理或 Skill 绑模型（核实：2026-10-14）。
 
-1. **`pi-subagents` frontmatter**（已装则跳过）：`pi install npm:pi-subagents`。在 agent markdown 里给角色写 `model:` + `thinking:`（如自定义 `planner` 用强模型、`worker`/`scout` 用便宜/快）；再 chain：`scout → planner → worker`（或官方推荐 `scout → worker → reviewer`）。内置无 `planner`，需自建 agent 文件。模型细节：[pi-subagents models](https://www.npmjs.com/package/pi-subagents)。
+1. **`pi-subagents` frontmatter**（已装则跳过）：`pi install npm:pi-subagents`。在 agent markdown 里给角色写 `model:` + `thinking:`（如自定义 `planner` 用强模型、`worker`/`scout` 用便宜/快）；再 chain：`scout → planner → worker`（或官方推荐 `scout → worker → reviewer`）。内置无 `planner`，需自建 agent 文件。模型细节：[models.md](https://cdn.jsdelivr.net/npm/pi-subagents@0.76.1/docs/models.md)（npm 包页亦可）。
 2. **Skill 激活时切模型**：`pi install npm:@felipefontoura/pi-skill-model-handoff`，Skill 的 `SKILL.md` frontmatter 写 `model:` / `thinking:`，加载 Skill 时自动切换 — [文章](https://felipefontoura.com/articles/pi-skill-model-handoff/)。
 
 社区常见：强模型规划、中档改码、轻量跑腿。对比 Claude Code 的 `opusplan` 见 [claude-code.md](claude-code.md)。
 
 跨 harness（Claude / Codex / Pi 互调）没有原生子 agent，要把对方包成工具：见 [cross-agent.md](cross-agent.md)。
+
+## 子 agent 配置
+
+靠包：`pi install npm:pi-subagents`（勿与 `@tintinweb/pi-subagents` 双开）。角色写在 `.pi/agents/*.md`，frontmatter 可绑 `model:` / `thinking:`。全局：`~/.pi/agent/settings.json` 的 `subagents.defaultModel` / `agentOverrides`（项目可用 `.pi/settings.json`）。链：`scout → worker → reviewer`。模型说明：[models.md](https://cdn.jsdelivr.net/npm/pi-subagents@0.76.1/docs/models.md)（核实：2026-10-15）。变体：`@minhduydev/pi-subagents` 等。
+
+规划/执行分模型（frontmatter + skill-model-handoff）见上一节，此处不重复。Claude 侧写文件与调用见 [claude-code.md](claude-code.md#子-agent-配置)。跨 harness 见 [cross-agent.md](cross-agent.md)。
 
 ## 第二档：按需体验（别进核心）
 
