@@ -90,10 +90,10 @@ pi install npm:billion-context
 | `pi-background-tasks` | 长跑 shell / 后台任务 | `pi install npm:pi-background-tasks` |
 | `@gotgenes/pi-permission-system` | 工具调用权限闸 | `pi install npm:@gotgenes/pi-permission-system` |
 | `pi-agent-extensions` | 界面扩展 + 主题（`/settings` → Theme；主题也可放 `~/.pi/agent/themes/`） | `pi install npm:pi-agent-extensions` |
-| `pi-long-task` | 长任务拆 TODO、子会话跑、TUI 进度；说 *Run a long task…* | `pi install npm:pi-long-task` |
+| `pi-long-task` | 长任务拆 TODO、子会话跑、TUI 进度；说 *Run a long task…*；自主迭代做法见 [autonomous-iteration.md](autonomous-iteration.md) | `pi install npm:pi-long-task` |
 | `pi-async-compaction` / `pi-longrun` | 异步压缩 / 后台任务与定时唤醒（可选） | 见 npm 包名 |
 
-主题文档：[Themes](https://pi.dev/docs/latest/themes)；长任务：[pi-long-task](https://pi.dev/packages/pi-long-task)。
+主题文档：[Themes](https://pi.dev/docs/latest/themes)；长任务：[pi-long-task](https://pi.dev/packages/pi-long-task)；跨夜续跑与 goal 循环见 [自主持续迭代](autonomous-iteration.md)。
 
 观测（Langfuse / LangSmith / Braintrust）与状态栏等见 plugins「其他常用包」。X 热帖参考：[小墨常驻组合](https://x.com/xiaomovps/status/2109857660904394878)、[观测选型](https://x.com/xiaomovps/status/2109901724634997127)、[oliviscusAI 起步包](https://x.com/oliviscusAI/status/2109836779042054267)。
 
