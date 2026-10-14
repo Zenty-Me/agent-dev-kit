@@ -95,6 +95,37 @@ pi install npm:billion-context
 
 观测（Langfuse / LangSmith / Braintrust）与状态栏等见 plugins「其他常用包」。X 热帖参考：[小墨常驻组合](https://x.com/xiaomovps/status/2109857660904394878)、[观测选型](https://x.com/xiaomovps/status/2109901724634997127)、[oliviscusAI 起步包](https://x.com/oliviscusAI/status/2109836779042054267)。
 
+## 社区实操习惯（X，核实：2026-10-14）
+
+主要来自 [小墨同学 @xiaomovps](https://x.com/xiaomovps) 与 Pi 作者 [Mario @badlogicgames](https://x.com/badlogicgames) 的公开帖；装扩展前仍以 [pi.dev/packages](https://pi.dev/packages) 与本地试跑为准。
+
+### 省 Token / 保持轻量
+
+1. **自己看的命令用 `!!`**，别把大段输出塞进模型上下文（[例](https://x.com/xiaomovps/status/2099732591557619746)）
+2. **`AGENTS.md` 只放长期规则**；流程做成 Skill，用到再加载
+3. **插件少装，按任务开**；低频能力优先 Skill，不要全局堆包
+4. **长任务分阶段 Compact**，旧日志该丢就丢（[例](https://x.com/xiaomovps/status/2102433994516115727)）
+5. **扩展演进顺序**：先手动跑通 → Skill → Extension → Package（[例](https://x.com/xiaomovps/status/2108172672488378588)）
+6. **多环境**：用 `PI_CODING_AGENT_DIR` 切配置目录，别一套插件打天下（[例](https://x.com/xiaomovps/status/2099387424745169301)）
+
+### 作者与常用命令
+
+- Mario：subagent 更适合对抗式 review / 确定性工作流，不拿来硬交「实施」；个人扩展退出常见：`Ctrl+B` 再 `d`（[例](https://x.com/badlogicgames/status/2107908930253054442)）
+- 更新包：`pi update --all`（[例](https://x.com/xiaomovps/status/2107377403286925407)）
+- 看谁在吃上下文：`pi-context-view`（已在核心增强；[例](https://x.com/xiaomovps/status/2105613404933394455)）
+- 中文系统向汇总：[Pi 蓝皮书帖](https://x.com/xiaomovps/status/2106379492662919337)
+
+### 体验向扩展（按需，别进核心）
+
+| 包 | 说明 | 安装 |
+|---|---|---|
+| `pi-code-render` | transcript 里代码块卡片渲染 + 一键复制 | `pi install npm:pi-code-render` |
+| `pi-better-render` | 流式 Markdown / 代码 / 公式美化（仅显示，不进上下文） | `pi install npm:pi-better-render` |
+| `pi-automode-classifier` | Auto mode：规则 → 本地决策模型 → 再确认危险操作 | `pi install npm:pi-automode-classifier` |
+| `sol-pi` / `@herbertgao/sol-pi` | 社区提到的省上下文 / SoL 类扩展（npm 名如上；X 上常说「NVIDIA SoL-Pi」，以实际包名为准） | `pi install npm:sol-pi` 或 `npm:@herbertgao/sol-pi` |
+
+完整第二档表见 [../plugins/README.md](../plugins/README.md)。
+
 ## 配置落点
 
 | 位置 | 用途 |
