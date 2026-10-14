@@ -46,6 +46,16 @@ npx tweakcc                         # 可选：主题 / spinner / 输入框样�
 
 原生能力：`/statusline`、`/hooks`、settings 里的 `statusLine` 与 `Notification` hook。文档：[statusline](https://code.claude.com/docs/en/statusline)、[hooks](https://code.claude.com/docs/en/hooks-guide)。
 
+## 规划/执行分模型
+
+两边都能规划用强模型、干活用便宜/快模型；Claude Code 有一键口（核实：2026-10-14）：
+
+- **`opusplan`**：`/model opusplan` 或 `claude --model opusplan` — Plan Mode 用 Opus，批准后自动切 Sonnet 执行（也可用 `opusplan[1m]`）
+- **子代理**：agent frontmatter 或 Task/`Agent` 参数写 `model: haiku|sonnet|opus`（或完整模型名）；社区常见 Opus 规划、Sonnet 改码、Haiku 跑腿
+- **`/advisor`**：主模型干活时顾问模型旁听（`advisorModel` / `claude --advisor …`）；与 `opusplan` 不同——顾问是中途咨询，不是计划边界自动切换
+
+官方：[model-config](https://code.claude.com/docs/en/model-config)、[advisor](https://code.claude.com/docs/en/advisor)。Pi 侧无 `opusplan`、靠 subagents / skill-model-handoff，见 [pi.md](pi.md)。
+
 ## 其他资源站点
 
 - https://www.aitmpl.com/：Claude Code 相关 skills、plugins、Commands、Settings、Hooks 等资源聚合

@@ -279,7 +279,7 @@
 |---|---|---|---|
 | 核心可选 | [pi-mcp-adapter](https://pi.dev/packages/pi-mcp-adapter) | 复杂 MCP 场景；新版可先试**内置 MCP**，需要再装（与内置 / `pi-mcp-extension` 勿双开） | `pi install npm:pi-mcp-adapter` 后 `/mcp-adapter setup` |
 | ★ 核心 | [pi-web-access](https://www.npmjs.com/package/pi-web-access) | 搜索、抓页、clone GitHub、PDF/YouTube；Exa 可无 key | `pi install npm:pi-web-access` |
-| ★ 核心 | [pi-subagents](https://www.npmjs.com/package/pi-subagents) | 子代理委派；复杂任务拆开做 | `pi install npm:pi-subagents` |
+| ★ 核心 | [pi-subagents](https://www.npmjs.com/package/pi-subagents) | 子代理委派；复杂任务拆开做；规划/执行分模型靠 frontmatter `model`/`thinking`（无 opusplan）见 [pi.md](../agents-learning/pi.md) | `pi install npm:pi-subagents` |
 | 全栈 | [pi-browser-use](https://www.npmjs.com/package/pi-browser-use) | Chrome DevTools MCP 浏览器自动化（需 Node ≥24 + Chrome） | `pi install npm:pi-browser-use` |
 | 全栈 | [pi-vision-handoff](https://www.npmjs.com/package/pi-vision-handoff) | 无视觉模型时：用视觉模型描述截图/设计稿再交回 | `pi install npm:pi-vision-handoff` |
 | 全栈 | [pi-lens](https://www.npmjs.com/package/pi-lens) | 边写边验（LSP/lint/类型/格式化回灌）；符号搜索、`/lens-map`；约 20MB+ 可能拖启动；**项目级 `-l`，勿全局常开** | `pi install -l npm:pi-lens` |
