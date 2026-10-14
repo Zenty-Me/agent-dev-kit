@@ -57,7 +57,7 @@
 | `superpowers@claude-plugins-official` | 核心技能库：头脑风暴、TDD、子 agent 开发、内置审查等 |
 | `feature-dev@claude-plugins-official` | 完整功能开发：代码库探索、架构设计、质量审查 |
 | `planning-with-files@planning-with-files` | 用项目文件持久化开发计划，hooks 注入计划上下文 |
-| `ralph-loop@claude-plugins-official` | 循环迭代同一提示直到完成（Ralph Wiggum 技法） |
+| `ralph-loop@claude-plugins-official` | 循环迭代同一提示直到完成（Ralph Wiggum 技法）；做法见 [autonomous-iteration.md](../agents-learning/autonomous-iteration.md) |
 | `ponytail@ponytail` | 强制最简实现：YAGNI、优先标准库、不做多余抽象 |
 | `code-modernization@claude-plugins-official` | 遗留代码现代化：评估、业务规则挖掘、改造/重写与验证 |
 | `claude-code-setup@claude-plugins-official` | 分析仓库并推荐 hooks、skills、MCP、subagent 等自动化 |
@@ -316,7 +316,7 @@
 | [pi-background-tasks](https://www.npmjs.com/package/pi-background-tasks) | 长跑 shell / 后台委派 | `pi install npm:pi-background-tasks` |
 | [@gotgenes/pi-permission-system](https://www.npmjs.com/package/@gotgenes/pi-permission-system) | 工具调用权限闸 | `pi install npm:@gotgenes/pi-permission-system` |
 | [pi-agent-extensions](https://www.npmjs.com/package/pi-agent-extensions) | 界面扩展合集 + 主题；`/settings` 选 Theme，主题也可放 `~/.pi/agent/themes/` | `pi install npm:pi-agent-extensions` |
-| [pi-long-task](https://www.npmjs.com/package/pi-long-task) / [pi.dev 文档](https://pi.dev/packages/pi-long-task) | 长任务：拆 TODO、子会话执行、TUI 进度；自然语言 *Run a long task…* | `pi install npm:pi-long-task` |
+| [pi-long-task](https://www.npmjs.com/package/pi-long-task) / [pi.dev 文档](https://pi.dev/packages/pi-long-task) | 长任务：拆 TODO、子会话执行、TUI 进度；自然语言 *Run a long task…*；自主迭代见 [autonomous-iteration.md](../agents-learning/autonomous-iteration.md) | `pi install npm:pi-long-task` |
 | [pi-async-compaction](https://www.npmjs.com/package/pi-async-compaction) | 长会话后台异步压缩摘要（可选） | `pi install npm:pi-async-compaction` |
 | [pi-longrun](https://www.npmjs.com/package/pi-longrun) | 后台任务与定时唤醒（可选） | `pi install npm:pi-longrun` |
 | [pi-code-render](https://www.npmjs.com/package/pi-code-render) | 代码块卡片 + 一键复制 | `pi install npm:pi-code-render` |
@@ -352,7 +352,7 @@
 | `advisor` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/advisor) | 做重大决策、卡住或准备收尾时，先咨询更强的模型 | 同上 |
 | `orchestrate` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/orchestrate) | 把大任务拆给多个并行云端 agent（规划、执行、校验） | 同上 |
 | `agent-compatibility` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/agent-compatibility) | 扫描仓库对 agent 是否友好，核对启动、校验、文档 | 同上 |
-| `ralph-loop` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/ralph-loop) | 用同一提示循环迭代直到完成（Ralph Wiggum 技法） | 同上 |
+| `ralph-loop` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/ralph-loop) | 用同一提示循环迭代直到完成（Ralph Wiggum 技法）；见 [autonomous-iteration.md](../agents-learning/autonomous-iteration.md) | 同上 |
 | `github` / `playwright` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/third_party) | GitHub 仓库/PR/Actions；真实浏览器操作与测试 | 同上 |
 | `create-plugin` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/create-plugin) | 生成并校验新插件的骨架 | 同上 |
 

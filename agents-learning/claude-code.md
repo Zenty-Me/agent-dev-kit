@@ -6,6 +6,8 @@
 
 精选、按用途分类的第三方插件见 [../plugins/README.md](../plugins/README.md)。
 
+长跑自主迭代（Ralph 插件、`max-iterations`、外层 bash 换新上下文）见 [自主持续迭代](autonomous-iteration.md)。
+
 本仓库 skills（marketplace 名 `agent-dev-kit`）：
 
 ```bash
