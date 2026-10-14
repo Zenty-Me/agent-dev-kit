@@ -54,7 +54,7 @@ npx tweakcc                         # 可选：主题 / spinner / 输入框样�
 - **子代理**：agent frontmatter 或 Task/`Agent` 参数写 `model: haiku|sonnet|opus`（或完整模型名）；社区常见 Opus 规划、Sonnet 改码、Haiku 跑腿
 - **`/advisor`**：主模型干活时顾问模型旁听（`advisorModel` / `claude --advisor …`）；与 `opusplan` 不同——顾问是中途咨询，不是计划边界自动切换
 
-官方：[model-config](https://code.claude.com/docs/en/model-config)、[advisor](https://code.claude.com/docs/en/advisor)。Pi 侧无 `opusplan`、靠 subagents / skill-model-handoff，见 [pi.md](pi.md)。
+官方：[model-config](https://code.claude.com/docs/en/model-config)、[advisor](https://code.claude.com/docs/en/advisor)。Pi 侧无 `opusplan`、靠 subagents / skill-model-handoff，见 [pi.md](pi.md)。跨 harness 把对方包成工具：见 [cross-agent.md](cross-agent.md)。
 
 ## 其他资源站点
 
