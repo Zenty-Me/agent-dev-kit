@@ -2,6 +2,8 @@
 
 以 Pi 作主生产力时的安装、核心包与配置落点。包清单见 [../plugins/README.md](../plugins/README.md) 的 Pi 章节（核实：2026-10-14）。目录：[pi.dev/packages](https://pi.dev/packages)。
 
+想让 Pi **自己装完**：把 [pi-bootstrap.md](pi-bootstrap.md) 整段提示词丢给它即可。
+
 ## 前置
 
 - Node **≥ 22.19**（装本体）
