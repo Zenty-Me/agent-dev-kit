@@ -53,10 +53,12 @@ pi install npm:pi-browser-use              # 隔离自动化浏览器（Node ≥
 # pi install npm:pi-chrome
 
 pi install npm:pi-vision-handoff           # 无视觉模型时处理截图/设计稿
-pi install -l npm:pi-lens                  # LSP：建议项目级 -l，勿全局常开
+pi install -l npm:pi-lens                  # 边写边验；建议项目级 -l，勿全局常开
 # 或二选一：
 # pi install -l npm:@mrclrchtr/supi-code-intelligence
 ```
+
+**pi-lens**（[包页](https://pi.dev/packages/pi-lens)）：改/写文件后自动 LSP、lint、类型检查、格式化，问题回灌上下文；另有符号搜索、`/lens-map`、read-guard。包体约 20MB+，可能拖慢启动（[例](https://x.com/xiaomovps/status/2099392866946818490)）；不常写代码可关。务必 `pi install -l npm:pi-lens`，勿全局常开。
 
 MCP 建议经 adapter 接：Context7（框架文档）、GitHub；Notion / Gmail 按需。
 
@@ -125,6 +127,46 @@ pi install npm:billion-context
 | `sol-pi` / `@herbertgao/sol-pi` | 社区提到的省上下文 / SoL 类扩展（npm 名如上；X 上常说「NVIDIA SoL-Pi」，以实际包名为准） | `pi install npm:sol-pi` 或 `npm:@herbertgao/sol-pi` |
 
 完整第二档表见 [../plugins/README.md](../plugins/README.md)。
+
+
+## 终端渲染
+
+默认渲染够用；想更好看再装扩展（核实：2026-10-14）。
+
+| 档 | 包 | 作用 |
+|---|---|---|
+| 代码卡片 | `pi-code-render` | 代码块卡片 + 一键复制 |
+| Markdown 增强 | `pi-better-render` | Markdown / 表格 / 公式图；公式图建议 Ghostty / Kitty / WezTerm；Windows Terminal 可先用代码卡片 |
+| 可选 | `pi-agent-extensions` | 界面更完整（主题 / 底栏等） |
+
+`typebox` 双份依赖警告来自旧版 `pi-browser-use`（钉 `^0.11.8`），与渲染无关。处理：`pi update npm:pi-browser-use` 或 `pi update --extensions`。
+
+验证：`/reload`、`/better-render status`、`pi list`。
+
+### 可粘贴提示词
+
+```
+请帮我增强 Pi 终端渲染体验，并处理依赖卫生问题。按下面做，做完用 /reload 或重启验证：
+
+1. 安装终端渲染扩展（两个都装）：
+   pi install npm:pi-code-render
+   pi install npm:pi-better-render
+
+2. （可选，界面更完整）安装主题与底栏扩展包：
+   pi install npm:pi-agent-extensions
+
+3. 顺手更新已装扩展（含我当前的 pi-browser-use，它钉在 ^0.11.8，会触发 typebox 双份依赖警告）：
+   pi update npm:pi-browser-use
+   或：pi update --extensions
+
+4. 装完后：
+   - 运行 /reload（或退出再进 pi）
+   - 用 /better-render status 确认渲染器状态
+   - 用 pi list 确认包已注册
+   - 简短汇报：装了什么、版本、是否还需换终端才能显示公式图
+
+不要改我的项目业务代码；只动 Pi 全局/扩展包。
+```
 
 ## 配置落点
 

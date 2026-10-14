@@ -282,7 +282,7 @@
 | ★ 核心 | [pi-subagents](https://www.npmjs.com/package/pi-subagents) | 子代理委派；复杂任务拆开做 | `pi install npm:pi-subagents` |
 | 全栈 | [pi-browser-use](https://www.npmjs.com/package/pi-browser-use) | Chrome DevTools MCP 浏览器自动化（需 Node ≥24 + Chrome） | `pi install npm:pi-browser-use` |
 | 全栈 | [pi-vision-handoff](https://www.npmjs.com/package/pi-vision-handoff) | 无视觉模型时：用视觉模型描述截图/设计稿再交回 | `pi install npm:pi-vision-handoff` |
-| 全栈 | [pi-lens](https://www.npmjs.com/package/pi-lens) | LSP / lint / format / 类型检查；**建议项目级 `-l`，勿全局常开** | `pi install -l npm:pi-lens` |
+| 全栈 | [pi-lens](https://www.npmjs.com/package/pi-lens) | 边写边验（LSP/lint/类型/格式化回灌）；符号搜索、`/lens-map`；约 20MB+ 可能拖启动；**项目级 `-l`，勿全局常开** | `pi install -l npm:pi-lens` |
 | 全栈备选 | [@mrclrchtr/supi-code-intelligence](https://www.npmjs.com/package/@mrclrchtr/supi-code-intelligence) | LSP + AST 导航/诊断/重构（与 pi-lens 二选一即可） | `pi install npm:@mrclrchtr/supi-code-intelligence` |
 | 长会话推荐（按需） | [billion-context](https://www.npmjs.com/package/billion-context) / [billion-context-pi](https://www.npmjs.com/package/billion-context-pi) | 上下文压缩（月下载高）；社区有反馈长会话仍会忘，**优先试内置 `/compact`** | `pi install npm:billion-context` 或 `billion-context-pi` |
 
@@ -295,6 +295,8 @@
 > **勿双开：** 内置 MCP ↔ `pi-mcp-adapter` ↔ `pi-mcp-extension`；`pi-subagents` ↔ `@tintinweb/pi-subagents`；`pi-browser-use` ↔ `pi-chrome`（按场景选：隔离自动化 vs 已登录日常 Chrome）。
 
 配置落点：`~/.pi/agent/`（项目用 `.pi/`）— `settings.json`、`mcp.json`、`APPEND_SYSTEM.md`；仓根 `AGENTS.md`；可选 `~/.pi/web-search.json`。用 `pi config` 开关扩展。模板要点见 [pi.md](../agents-learning/pi.md)。
+
+**终端渲染 / pi-lens：** 默认渲染够用；要更好看装 `pi-code-render` + `pi-better-render`（可选 `pi-agent-extensions`）。`typebox` 警告多来自旧版 `pi-browser-use`，与渲染无关。`pi-lens` 边写边验、务必项目级 `-l`，约 20MB+ 可能拖启动。可粘贴提示词与细节见 [pi.md](../agents-learning/pi.md)「终端渲染」「全栈加装」。
 
 ### 第二档：按需体验（别进核心）
 
@@ -317,8 +319,8 @@
 | [pi-long-task](https://www.npmjs.com/package/pi-long-task) / [pi.dev 文档](https://pi.dev/packages/pi-long-task) | 长任务：拆 TODO、子会话执行、TUI 进度；自然语言 *Run a long task…* | `pi install npm:pi-long-task` |
 | [pi-async-compaction](https://www.npmjs.com/package/pi-async-compaction) | 长会话后台异步压缩摘要（可选） | `pi install npm:pi-async-compaction` |
 | [pi-longrun](https://www.npmjs.com/package/pi-longrun) | 后台任务与定时唤醒（可选） | `pi install npm:pi-longrun` |
-| [pi-code-render](https://www.npmjs.com/package/pi-code-render) | transcript 代码块美化渲染 | `pi install npm:pi-code-render` |
-| [pi-better-render](https://www.npmjs.com/package/pi-better-render) | 流式 Markdown/代码/公式渲染（不进上下文） | `pi install npm:pi-better-render` |
+| [pi-code-render](https://www.npmjs.com/package/pi-code-render) | 代码块卡片 + 一键复制 | `pi install npm:pi-code-render` |
+| [pi-better-render](https://www.npmjs.com/package/pi-better-render) | Markdown/表格/公式图（公式图建议 Ghostty/Kitty/WezTerm；不进上下文） | `pi install npm:pi-better-render` |
 | [pi-automode-classifier](https://www.npmjs.com/package/pi-automode-classifier) | Auto mode：危险命令分级确认 | `pi install npm:pi-automode-classifier` |
 | [sol-pi](https://www.npmjs.com/package/sol-pi) / [@herbertgao/sol-pi](https://www.npmjs.com/package/@herbertgao/sol-pi) | 省上下文类扩展（社区常称 SoL-Pi） | `pi install npm:sol-pi` 等 |
 

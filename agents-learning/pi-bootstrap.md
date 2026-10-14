@@ -33,3 +33,31 @@ pi install -l npm:pi-lens
 
 装完自检：web 搜索一条文档、读一个本地文件、说明子代理怎么拆任务。
 ```
+
+
+## 只增强终端渲染
+
+默认渲染够用。若只要更好看的终端输出（不动核心包），把下面整段丢给 Pi；说明见 [pi.md](pi.md)「终端渲染」。
+
+```
+请帮我增强 Pi 终端渲染体验，并处理依赖卫生问题。按下面做，做完用 /reload 或重启验证：
+
+1. 安装终端渲染扩展（两个都装）：
+   pi install npm:pi-code-render
+   pi install npm:pi-better-render
+
+2. （可选，界面更完整）安装主题与底栏扩展包：
+   pi install npm:pi-agent-extensions
+
+3. 顺手更新已装扩展（含我当前的 pi-browser-use，它钉在 ^0.11.8，会触发 typebox 双份依赖警告）：
+   pi update npm:pi-browser-use
+   或：pi update --extensions
+
+4. 装完后：
+   - 运行 /reload（或退出再进 pi）
+   - 用 /better-render status 确认渲染器状态
+   - 用 pi list 确认包已注册
+   - 简短汇报：装了什么、版本、是否还需换终端才能显示公式图
+
+不要改我的项目业务代码；只动 Pi 全局/扩展包。
+```
