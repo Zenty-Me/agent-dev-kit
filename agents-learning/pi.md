@@ -145,6 +145,9 @@ pi install npm:billion-context
 
 ### 全栈仓 `AGENTS.md` 建议字段
 
+通用写法（短、硬、分层）见 [project-instructions.md](project-instructions.md)。
+
+
 - 技术栈与主要目录（前端 / 后端 / 共享包）
 - 如何起前后端（命令、端口、依赖）
 - 测试与 lint 命令

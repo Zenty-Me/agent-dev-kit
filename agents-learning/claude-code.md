@@ -1,5 +1,7 @@
 # Claude Code 使用笔记
 
+项目指令文件（`CLAUDE.md` / `AGENTS.md`）写法见 [project-instructions.md](project-instructions.md)。
+
 ## 优先安装路径（本仓库 / 官方 marketplace）
 
 精选、按用途分类的第三方插件见 [../plugins/README.md](../plugins/README.md)。
