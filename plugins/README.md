@@ -1,6 +1,6 @@
 # Agent 插件与扩展清单
 
-插件通过各 agent 自己的 marketplace / 包管理安装，本仓库不保存源码。只收**日常开发实用**、仓库存在且近期还在维护的条目（核实日期：2026-10）；不全量镜像各官方目录。
+插件通过各 agent 自己的 marketplace / 包管理安装，本仓库不保存源码。只收**日常开发实用**、仓库存在且近期还在维护的条目（核实日期：2026-10-14）；不全量镜像各官方目录。体验向（hooks / 状态栏 / 记忆 / 主题）见 Claude Code 章节的「Agent 使用体验」。
 
 | Agent | 扩展机制 | 跳转 |
 |---|---|---|
@@ -29,13 +29,24 @@
 
 | 名称 | 仓库 | 说明 |
 |---|---|---|
-| claude-plugins-official | anthropics/claude-plugins-official | Anthropic 官方目录（含首方插件与精选第三方） |
+| claude-plugins-official | anthropics/claude-plugins-official | Anthropic 官方目录（含首方插件与精选第三方；约 300+） |
+| knowledge-work-plugins | anthropics/knowledge-work-plugins | 官方 Knowledge Work：按岗位角色（sales / marketing / legal / finance 等）打包 |
+| skills（官方 Agent Skills） | anthropics/skills | 官方 skill 市场；含 `document-skills`（PDF/DOCX/PPTX/XLSX）等 |
+| claude-plugins-community | anthropics/claude-plugins-community | 社区插件市场（自动化校验；建议 pin SHA） |
 | supabase-agent-skills | supabase/agent-skills | Supabase / Postgres skill 插件 |
 | claude-code-workflows | wshobson/agents | 多 harness 工作流与开发插件合集 |
 | planning-with-files | OthmanAdi/planning-with-files | 文件化持久计划 |
 | ponytail | DietrichGebert/ponytail | 强制最简实现 |
 
 > 多数第三方插件也可直接从 `claude-plugins-official` 安装（例如 `github@claude-plugins-official`）。若某插件同时出现在专用 marketplace，任选其一即可。
+>
+> Knowledge Work / Skills 示例：
+> ```bash
+> /plugin marketplace add anthropics/knowledge-work-plugins
+> /plugin install productivity@knowledge-work-plugins
+> /plugin marketplace add anthropics/skills
+> /plugin install document-skills@anthropic-agent-skills
+> ```
 
 ### 插件列表
 
@@ -157,23 +168,84 @@
 | `explanatory-output-style@claude-plugins-official` | 解释实现选择与代码库模式（替代已弃用的 Explanatory 输出风格） |
 | `learning-output-style@claude-plugins-official` | 交互式学习：在决策点要求你动手写关键代码 |
 | `session-report@claude-plugins-official` | 从本地会话日志生成用量 HTML 报告（token、缓存、贵提示等） |
+| `remember@claude-plugins-official` | 跨会话连续记忆：SessionStart / PostToolUse hooks + 日志；`/remember` 交接（市场安装量很高） |
 
 `skill-creator`、`frontend-design`、`supabase`、`postgres-best-practices`、以及本仓库 `coding-standards` 中的 `humanizer` 等，与官方/上游 marketplace 可能同名，二选一即可。
 
 ### Agent 使用体验
 
-只适用于 Claude Code 的体验工具：状态栏、用量、会话 GUI。支持多种 agent 的通知、记忆、多会话管理器放在下文[跨 agent 通用工具](#跨-agent-通用工具)。这些大多是独立 CLI 或 hooks，不是 `claude-plugins-official` 的条目。★ 为最推荐。已在上文列出的官方体验类插件（`session-report`、输出风格、`hookify`、`claude-md-management`）这里不再重复。
+只适用于 Claude Code 的体验工具：hooks、状态栏、主题、用量、会话 GUI、记忆连续性。支持多种 agent 的通知、记忆、多会话管理器放在下文[跨 agent 通用工具](#跨-agent-通用工具)。★ 为最推荐。
+
+**架构说明：** 插件可打包 hooks / commands / skills，但 `statusLine` 写在 `~/.claude/settings.json`（不是插件 manifest）。状态栏类工具通常靠 SessionStart hook 或 `/setup` 把配置写进去。官方文档：[statusline](https://code.claude.com/docs/en/statusline)、[hooks](https://code.claude.com/docs/en/hooks-guide)。
+
+#### 官方体验类插件（hooks / 记忆 / 用量）
+
+上文「开发流程」「输出风格与会话辅助」已列；这里收成体验向短表，方便对照：
+
+| 插件 | 改善点 | 安装 |
+|---|---|---|
+| ★ `hookify@claude-plugins-official` | 用对话或 markdown 写 warn/block hooks，少手写 JSON | `/plugin install hookify@claude-plugins-official` |
+| ★ `claude-md-management@claude-plugins-official` | 审计 / 改进 `CLAUDE.md`，沉淀会话学习 | `/plugin install claude-md-management@claude-plugins-official` |
+| ★ `remember@claude-plugins-official` | 跨会话连续记忆（SessionStart / PostToolUse） | `/plugin install remember@claude-plugins-official` |
+| `claude-code-setup@claude-plugins-official` | 扫仓库，推荐 hooks / skills / MCP / subagent | `/plugin install claude-code-setup@claude-plugins-official` |
+| `session-report@claude-plugins-official` | 会话 token / 缓存 / 贵提示的 HTML 报告 | `/plugin install session-report@claude-plugins-official` |
+| `explanatory-output-style` / `learning-output-style` | 解释型输出 / 交互式学习模式 | `@claude-plugins-official` |
+| `plugin-dev@claude-plugins-official` | 自己写 hooks / commands / agents 时的脚手架 | `/plugin install plugin-dev@claude-plugins-official` |
+
+#### 状态栏 / 主题 / 用量 / GUI
 
 | 工具 | 来源 | 说明 | 安装 / 启用 |
 |---|---|---|---|
-| ★ ccstatusline | [sirmalloc/ccstatusline](https://github.com/sirmalloc/ccstatusline) | 可高度自定义的状态栏（模型、上下文用量、git 分支、费用、powerline 主题） | `npx -y ccstatusline@latest` 进入交互式配置，自动写入 `~/.claude/settings.json` 的 `statusLine` |
-| claude-powerline | [Owloops/claude-powerline](https://github.com/Owloops/claude-powerline) | vim 风格 powerline 状态栏，偏向开箱即用的主题 | `/plugin marketplace add Owloops/claude-powerline` → `/plugin install claude-powerline@claude-powerline` |
+| ★ ccstatusline | [sirmalloc/ccstatusline](https://github.com/sirmalloc/ccstatusline) | 可高度自定义的状态栏（模型、上下文用量、git、费用、限流、powerline；官方 statusline 文档亦提及） | `npx -y ccstatusline@latest` 交互配置，写入 `~/.claude/settings.json` 的 `statusLine` |
+| claude-powerline | [Owloops/claude-powerline](https://github.com/Owloops/claude-powerline) | vim 风格 powerline 状态栏，开箱主题；`/powerline` 向导 | `/plugin marketplace add Owloops/claude-powerline` → `/plugin install claude-powerline@claude-powerline` |
+| ★ tweakcc | [Piebald-AI/tweakcc](https://github.com/Piebald-AI/tweakcc) | 改 Claude Code 主题、spinner、输入框等界面样式 | `npx tweakcc` |
+| cc-statusline（CN） | [dualface/cc-statusline](https://github.com/dualface/cc-statusline) | 偏中文场景的状态栏插件（模型 / effort / 任务耗时；SessionStart 注入） | 见仓库 README（marketplace 安装） |
+| ccstatusline-zh | [huangguang1999/ccstatusline-zh](https://github.com/huangguang1999/ccstatusline-zh) | ccstatusline 中文本地化 fork（第三方，装前审一下） | 见仓库 README |
+| SammyLin/cc-statusline | [SammyLin/cc-statusline](https://github.com/SammyLin/cc-statusline) | 多行看板 + Subagent / PreCompact 等 hooks | `/plugin marketplace add SammyLin/cc-statusline` → 安装 `cc-statusline@cc-statusline` |
 | ★ ccusage | [ccusage/ccusage](https://github.com/ccusage/ccusage) | 读取本地日志，按日/月/会话/5 小时窗口统计 token 和费用 | `npx ccusage@latest`（如 `npx ccusage@latest daily`、`blocks --live`） |
 | Claude Code Usage Monitor | [Maciek-roboblog/Claude-Code-Usage-Monitor](https://github.com/Maciek-roboblog/Claude-Code-Usage-Monitor) | 终端实时额度看板，预测何时用完并提前告警 | `uv tool install claude-monitor`（或 `pip install claude-monitor`），运行 `claude-monitor` |
 | opcode | [winfunc/opcode](https://github.com/winfunc/opcode) | Claude Code 桌面 GUI：管理会话、自定义 agent、查看用量、浏览会话历史 | 从 GitHub Releases 下载，或按 README 从源码构建 |
 | claude-code-viewer | [d-kimuson/claude-code-viewer](https://github.com/d-kimuson/claude-code-viewer) | Web 客户端：浏览和恢复历史会话，并在网页中继续对话 | `npx @kimuson/claude-code-viewer@latest --port 3400` |
 
-> 状态栏同时只能生效一个（`ccstatusline` 和 `claude-powerline` 二选一）。statusline 类工具会改 `~/.claude/settings.json`，装之前先备份。
+#### 原生能力（不必装插件）
+
+| 能力 | 位置 | 说明 |
+|---|---|---|
+| `statusLine` / `refreshInterval` / `subagentStatusLine` | `~/.claude/settings.json` | 任意 shell 命令画状态栏；stdin 给会话 JSON |
+| `/statusline` | 内置斜杠命令 | 用自然语言生成自定义 statusline 脚本 |
+| `hooks` + `/hooks` | 用户/项目 settings 或插件 `hooks/hooks.json` | Notification、Pre/PostToolUse、Stop、SessionStart、PreCompact 等 |
+| `CLAUDE.md` + `#` 快捷写入 | 项目 / 用户记忆 | 原生上下文记忆；`claude-md-management` / `remember` 是增强 |
+| `permissions.allow/ask/deny` | settings | 确认/拦截 UX，无需插件 |
+| `/usage` | 内置 | 费用与用量；也可叠 statusline JSON 字段 |
+
+桌面通知示例（Linux，写入 settings 的 `hooks`）：
+
+```json
+{
+  "hooks": {
+    "Notification": [{
+      "matcher": "",
+      "hooks": [{
+        "type": "command",
+        "command": "notify-send 'Claude Code' 'Needs your attention'"
+      }]
+    }]
+  }
+}
+```
+
+跨 agent 的打包通知 / 记忆见下文 [agent-notifications](#跨-agent-通用工具)、[claude-mem](#跨-agent-通用工具)。
+
+#### 体验向起步短清单
+
+1. 状态栏：`ccstatusline`（与 `claude-powerline` 二选一）
+2. Hooks：`hookify`
+3. 记忆：`claude-md-management`；要更强跨会话连续性再加 `remember` 或跨 agent 的 `claude-mem`
+4. 通知：先写原生 `Notification` hook；不够再装 `agent-notifications`
+5. 仓库定制：跑一次 `claude-code-setup`
+6. 外观：`tweakcc`
+
+> 状态栏同时只能生效一个。statusline 类工具会改 `~/.claude/settings.json`，装之前先备份。第三方 hooks / MCP 会带权限与上下文成本，装前在 `/plugin` 里看「Will install」。
 
 ## Codex
 
@@ -280,6 +352,7 @@
 | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | 多 harness | React/Web 性能与设计；本仓库已收录多条 |
 | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 多 harness | 生产级工程技能；本仓库已收录 TDD / 简化等 |
 | [obra/superpowers](https://github.com/obra/superpowers) | Claude Code / 多 | 也可作为 `superpowers@claude-plugins-official` 安装 |
+| [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)（ECC） | Claude Code | 大而全 agents/skills/hooks/MCP 合集；按需装，别一次全开 |
 | [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | 多 | 社区 agent skills 大合集，挑选时注意质量 |
 
 更细的安装笔记见 [agents-learning/claude-code.md](../agents-learning/claude-code.md)。

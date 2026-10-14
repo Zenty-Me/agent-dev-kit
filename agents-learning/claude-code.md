@@ -28,6 +28,20 @@ npx skills add Zenty-Me/agent-dev-kit
 npx skills add Zenty-Me/agent-dev-kit -s vercel-react-best-practices -g
 ```
 
+## 体验向起步（hooks / 状态栏 / 记忆）
+
+完整清单与安装命令见 [../plugins/README.md](../plugins/README.md) 的「Agent 使用体验」。最小组合：
+
+```bash
+npx -y ccstatusline@latest          # 状态栏（写入 ~/.claude/settings.json）
+/plugin install hookify@claude-plugins-official
+/plugin install claude-md-management@claude-plugins-official
+/plugin install remember@claude-plugins-official   # 可选：更强跨会话记忆
+npx tweakcc                         # 可选：主题 / spinner / 输入框样式
+```
+
+原生能力：`/statusline`、`/hooks`、settings 里的 `statusLine` 与 `Notification` hook。文档：[statusline](https://code.claude.com/docs/en/statusline)、[hooks](https://code.claude.com/docs/en/hooks-guide)。
+
 ## 其他资源站点
 
 - https://www.aitmpl.com/：Claude Code 相关 skills、plugins、Commands、Settings、Hooks 等资源聚合
