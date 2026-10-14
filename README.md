@@ -133,6 +133,21 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 
 [plugins/README.md](plugins/README.md) 按 agent 分区，收录 **Claude Code、Codex、Pi、Cursor、Gemini CLI、OpenCode** 的插件和扩展。每个分区写明该 agent 的扩展机制、推荐条目和安装命令；另有一节支持多种 agent 的通用工具（记忆、通知、多会话管理）。
 
+## 知识库（Notion）
+
+与本仓库同步的条目（由「知知」维护，核实：2026-10-14）：
+
+| 条目 | 链接 |
+|---|---|
+| 总览上手 | https://app.notion.com/p/3f9c5d4b48098194b320cae77bbdc8aa |
+| Pi bootstrap | https://app.notion.com/p/3f9c5d4b480981f98e83cd473558909f |
+| 插件总览 | https://app.notion.com/p/3f9c5d4b480981869ef6edf95bb58ca9 |
+| Skills 六包 | https://app.notion.com/p/3f9c5d4b4809815eae4ec4208bbaf246 |
+| 核心概念 | https://app.notion.com/p/3f9c5d4b4809813d83c5cc0a1975bbde |
+| Claude Code 笔记 | https://app.notion.com/p/3f9c5d4b480981ab8b54f2468e54fbc1 |
+
+仓内权威内容仍以本仓库 Markdown 为准；Notion 便于检索与问答。
+
 ## 使用笔记
 
 - [Claude Code](agents-learning/claude-code.md)：优先用本仓库 / 官方 marketplace 安装；附资源站点
