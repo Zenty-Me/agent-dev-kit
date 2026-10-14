@@ -273,7 +273,7 @@ Pi 也有原生 MCP（`pi mcp add`），但社区主路径是 **`pi-mcp-adapter`
 
 ### 主生产力起步（核实：2026-10-14）
 
-本体：`curl -fsSL https://pi.dev/install.sh | sh` → `pi` → `/login` → `/model`。
+前置：Node **≥ 22.19**；`pi-browser-use` 需 Node **≥ 24** + Chrome。本体：`curl -fsSL https://pi.dev/install.sh | sh` → `pi` → `/login` → `/model`。快捷键与 `/compact` 等见 [agents-learning/pi.md](../agents-learning/pi.md)。
 
 | 档位 | 包 | 说明 | 安装 |
 |---|---|---|---|
@@ -284,11 +284,23 @@ Pi 也有原生 MCP（`pi mcp add`），但社区主路径是 **`pi-mcp-adapter`
 | 全栈 | [pi-vision-handoff](https://www.npmjs.com/package/pi-vision-handoff) | 无视觉模型时：用视觉模型描述截图/设计稿再交回 | `pi install npm:pi-vision-handoff` |
 | 全栈 | [pi-lens](https://www.npmjs.com/package/pi-lens) | LSP / lint / format / 类型检查 | `pi install npm:pi-lens` |
 | 全栈备选 | [@mrclrchtr/supi-code-intelligence](https://www.npmjs.com/package/@mrclrchtr/supi-code-intelligence) | LSP + AST 导航/诊断/重构（与 pi-lens 二选一即可） | `pi install npm:@mrclrchtr/supi-code-intelligence` |
-| 按需 | [billion-context](https://www.npmjs.com/package/billion-context) | 长会话上下文压缩（也可用内置 `/compact`） | `pi install npm:billion-context` |
+| 长会话推荐（按需） | [billion-context](https://www.npmjs.com/package/billion-context) | 长会话上下文压缩（月下载很高；也可用内置 `/compact`） | `pi install npm:billion-context` |
 
 > 日常够用 = web + MCP + subagents。全栈再加 browser +（lens 或 supi）+ 按需 vision。别一口气堆包，上下文会被抢光。
+>
+> **勿双开：** `pi-mcp-extension` ↔ `pi-mcp-adapter`；`@tintinweb/pi-subagents` ↔ `pi-subagents`。
 
-配置落点：`~/.pi/agent/`（项目用 `.pi/`）— `settings.json`、`mcp.json`、`APPEND_SYSTEM.md`；仓根 `AGENTS.md`；可选 `~/.pi/web-search.json`。用 `pi config` 开关扩展。
+配置落点：`~/.pi/agent/`（项目用 `.pi/`）— `settings.json`、`mcp.json`、`APPEND_SYSTEM.md`；仓根 `AGENTS.md`；可选 `~/.pi/web-search.json`。用 `pi config` 开关扩展。模板要点见 [pi.md](../agents-learning/pi.md)。
+
+### 第二档：按需体验（别进核心）
+
+| 包 | 说明 | 安装 |
+|---|---|---|
+| [pi-memory](https://www.npmjs.com/package/pi-memory) | 跨会话记忆（daily / 长期 / scratchpad） | `pi install npm:pi-memory` |
+| [@narumitw/pi-plan-mode](https://www.npmjs.com/package/@narumitw/pi-plan-mode) 或 [@hank-warren/pi-plan-mode](https://www.npmjs.com/package/@hank-warren/pi-plan-mode) | 只读规划模式（二选一） | `pi install npm:@narumitw/pi-plan-mode` |
+| [@juicesharp/rpiv-todo](https://www.npmjs.com/package/@juicesharp/rpiv-todo) + [rpiv-ask-user-question](https://www.npmjs.com/package/@juicesharp/rpiv-ask-user-question) | todo 浮层 + 结构化追问 | 见下表安装命令 |
+| [pi-background-tasks](https://www.npmjs.com/package/pi-background-tasks) | 长跑 shell / 后台委派 | `pi install npm:pi-background-tasks` |
+| [@gotgenes/pi-permission-system](https://www.npmjs.com/package/@gotgenes/pi-permission-system) | 工具调用权限闸 | `pi install npm:@gotgenes/pi-permission-system` |
 
 ### 其他常用包
 
@@ -299,10 +311,10 @@ Pi 也有原生 MCP（`pi mcp add`），但社区主路径是 **`pi-mcp-adapter`
 | rpiv-todo | [juicesharp/rpiv-mono](https://github.com/juicesharp/rpiv-mono) | 模型用 todo，实时浮层，`/reload` 后仍保留 | `pi install npm:@juicesharp/rpiv-todo` |
 | rpiv-ask-user-question | [juicesharp/rpiv-mono](https://github.com/juicesharp/rpiv-mono) | 需要澄清时弹出结构化问卷 | `pi install npm:@juicesharp/rpiv-ask-user-question` |
 | pi-btw | [dbachelder/pi-btw](https://github.com/dbachelder/pi-btw) | `/btw` 旁支对话，不打断主任务 | `pi install npm:pi-btw` |
-| pi-permission-system | [gotgenes/pi-packages](https://github.com/gotgenes/pi-packages) | 工具调用权限控制 | `pi install npm:@gotgenes/pi-permission-system` |
 | pi-fff | [dmtrKovalenko/fff](https://github.com/dmtrKovalenko/fff) | FFF 模糊文件与内容搜索 | `pi install npm:@ff-labs/pi-fff` |
 | pi-observability-plugin | [langfuse/pi-observability-plugin](https://github.com/langfuse/pi-observability-plugin) | 追踪到 Langfuse | `pi install npm:@langfuse/pi-observability-plugin` |
-| pi-mcp-extension | npm `pi-mcp-extension` | 另一路 MCP client（与 adapter 二选一即可） | `pi install npm:pi-mcp-extension` |
+| pi-mcp-extension | npm `pi-mcp-extension` | 另一路 MCP client（**与 `pi-mcp-adapter` 二选一，勿双开**） | `pi install npm:pi-mcp-extension` |
+| @tintinweb/pi-subagents | npm `@tintinweb/pi-subagents` | Claude Code 风格子代理 UI（**与 `pi-subagents` 二选一，勿双开**） | `pi install npm:@tintinweb/pi-subagents` |
 
 ## Cursor
 
