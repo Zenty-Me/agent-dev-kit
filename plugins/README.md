@@ -269,7 +269,7 @@
 
 机制（见 [packages 文档](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md)；目录 [pi.dev/packages](https://pi.dev/packages)）：pi package 把 extensions、skills、prompt、themes 打成包。安装：`pi install npm:<包名>` / `pi install git:github.com/<owner>/<repo>`；`pi list` / `pi remove`；`-l` 写项目级 `.pi/settings.json`；`pi -e npm:<包名>` 仅本次试用。扩展会执行代码，装前看源码。
 
-Pi 也有原生 MCP（`pi mcp add`），但社区主路径是 **`pi-mcp-adapter`**（下载量最高），装完跑 `/mcp-adapter setup`。更细的安装与配置见 [agents-learning/pi.md](../agents-learning/pi.md)。
+新版 Pi **已内置 MCP**（`pi mcp add`）；社区有人反馈可不再装 adapter。`pi-mcp-adapter` 仍是高下载路径，建议 **先试内置 MCP，复杂场景再 adapter，二者勿双开**。装 adapter 后跑 `/mcp-adapter setup`。更细说明见 [agents-learning/pi.md](../agents-learning/pi.md)。（X 社区增量核实：2026-10-14）
 
 ### 主生产力起步（核实：2026-10-14）
 
@@ -277,18 +277,20 @@ Pi 也有原生 MCP（`pi mcp add`），但社区主路径是 **`pi-mcp-adapter`
 
 | 档位 | 包 | 说明 | 安装 |
 |---|---|---|---|
-| ★ 核心 | [pi-mcp-adapter](https://pi.dev/packages/pi-mcp-adapter) | 接 MCP（GitHub / Notion / Context7 等）；目录下载量领先 | `pi install npm:pi-mcp-adapter` 后 `/mcp-adapter setup` |
+| 核心可选 | [pi-mcp-adapter](https://pi.dev/packages/pi-mcp-adapter) | 复杂 MCP 场景；新版可先试**内置 MCP**，需要再装（与内置 / `pi-mcp-extension` 勿双开） | `pi install npm:pi-mcp-adapter` 后 `/mcp-adapter setup` |
 | ★ 核心 | [pi-web-access](https://www.npmjs.com/package/pi-web-access) | 搜索、抓页、clone GitHub、PDF/YouTube；Exa 可无 key | `pi install npm:pi-web-access` |
 | ★ 核心 | [pi-subagents](https://www.npmjs.com/package/pi-subagents) | 子代理委派；复杂任务拆开做 | `pi install npm:pi-subagents` |
 | 全栈 | [pi-browser-use](https://www.npmjs.com/package/pi-browser-use) | Chrome DevTools MCP 浏览器自动化（需 Node ≥24 + Chrome） | `pi install npm:pi-browser-use` |
 | 全栈 | [pi-vision-handoff](https://www.npmjs.com/package/pi-vision-handoff) | 无视觉模型时：用视觉模型描述截图/设计稿再交回 | `pi install npm:pi-vision-handoff` |
-| 全栈 | [pi-lens](https://www.npmjs.com/package/pi-lens) | LSP / lint / format / 类型检查 | `pi install npm:pi-lens` |
+| 全栈 | [pi-lens](https://www.npmjs.com/package/pi-lens) | LSP / lint / format / 类型检查；**建议项目级 `-l`，勿全局常开** | `pi install -l npm:pi-lens` |
 | 全栈备选 | [@mrclrchtr/supi-code-intelligence](https://www.npmjs.com/package/@mrclrchtr/supi-code-intelligence) | LSP + AST 导航/诊断/重构（与 pi-lens 二选一即可） | `pi install npm:@mrclrchtr/supi-code-intelligence` |
-| 长会话推荐（按需） | [billion-context](https://www.npmjs.com/package/billion-context) | 长会话上下文压缩（月下载很高；也可用内置 `/compact`） | `pi install npm:billion-context` |
+| 长会话推荐（按需） | [billion-context](https://www.npmjs.com/package/billion-context) / [billion-context-pi](https://www.npmjs.com/package/billion-context-pi) | 上下文压缩（月下载高）；社区有反馈长会话仍会忘，**优先试内置 `/compact`** | `pi install npm:billion-context` 或 `billion-context-pi` |
 
-> 日常够用 = web + MCP + subagents。全栈再加 browser +（lens 或 supi）+ 按需 vision。别一口气堆包，上下文会被抢光。
+> **社区常驻做减法（X，约 2026-10-09～10-13）：** 很多人只锁 `pi-web-access` + `pi-context-view`（可选再加 `pi-cc-extensions`）。`pi-lens` 建议 **项目级** `pi install -l npm:pi-lens`，别全局常开。长会话优先内置 `/compact`；`billion-context` / `billion-context-pi` 有人反馈仍会忘，勿当银弹。
 >
-> **勿双开：** `pi-mcp-extension` ↔ `pi-mcp-adapter`；`@tintinweb/pi-subagents` ↔ `pi-subagents`。
+> 日常够用 = web +（内置 MCP 或 adapter 二选一）+ subagents。全栈再加 browser/chrome +（lens 项目级）+ 按需 vision。别一口气堆包。
+>
+> **勿双开：** 内置 MCP ↔ `pi-mcp-adapter` ↔ `pi-mcp-extension`；`pi-subagents` ↔ `@tintinweb/pi-subagents`；`pi-browser-use` ↔ `pi-chrome`（按场景选：隔离自动化 vs 已登录日常 Chrome）。
 
 配置落点：`~/.pi/agent/`（项目用 `.pi/`）— `settings.json`、`mcp.json`、`APPEND_SYSTEM.md`；仓根 `AGENTS.md`；可选 `~/.pi/web-search.json`。用 `pi config` 开关扩展。模板要点见 [pi.md](../agents-learning/pi.md)。
 
@@ -296,6 +298,14 @@ Pi 也有原生 MCP（`pi mcp add`），但社区主路径是 **`pi-mcp-adapter`
 
 | 包 | 说明 | 安装 |
 |---|---|---|
+| [pi-context-view](https://www.npmjs.com/package/pi-context-view) | 看清上下文占用（含隐藏的 base prompt / tools / 扩展注入）；社区常驻推荐 | `pi install npm:pi-context-view` |
+| [pi-chrome](https://www.npmjs.com/package/pi-chrome) | 经授权使用本机已登录 Chrome（与 `pi-browser-use` 按场景二选一） | `pi install npm:pi-chrome` |
+| [pi-agents](https://www.npmjs.com/package/pi-agents) | 基于 pi-durable 的持久命名子代理 / 图编排 | `pi install npm:pi-agents` |
+| [pi-gpt-search](https://www.npmjs.com/package/pi-gpt-search) | 借 Codex 独立搜索，省 GPT token | `pi install npm:pi-gpt-search` |
+| [pi-file-preview](https://www.npmjs.com/package/pi-file-preview) | TUI 点文件链接预览（含 :line）；Quick Open | `pi install npm:pi-file-preview` |
+| [pi-minimal-footer](https://www.npmjs.com/package/pi-minimal-footer) | 极简一行 footer（用量 / 路径 / 模型 / 上下文） | `pi install npm:pi-minimal-footer` |
+| [layermap](https://www.npmjs.com/package/layermap) | 代码分层地图：目录 / 模块 / 调用链与改动影响面 | `pi install npm:layermap` |
+| [pi-cc-extensions](https://www.npmjs.com/package/pi-cc-extensions) | Claude Code 风格 TUI 输出与实用小工具（社区常驻可选） | `pi install npm:pi-cc-extensions` |
 | [pi-memory](https://www.npmjs.com/package/pi-memory) | 跨会话记忆（daily / 长期 / scratchpad） | `pi install npm:pi-memory` |
 | [@narumitw/pi-plan-mode](https://www.npmjs.com/package/@narumitw/pi-plan-mode) 或 [@hank-warren/pi-plan-mode](https://www.npmjs.com/package/@hank-warren/pi-plan-mode) | 只读规划模式（二选一） | `pi install npm:@narumitw/pi-plan-mode` |
 | [@juicesharp/rpiv-todo](https://www.npmjs.com/package/@juicesharp/rpiv-todo) + [rpiv-ask-user-question](https://www.npmjs.com/package/@juicesharp/rpiv-ask-user-question) | todo 浮层 + 结构化追问 | 见下表安装命令 |
@@ -313,6 +323,8 @@ Pi 也有原生 MCP（`pi mcp add`），但社区主路径是 **`pi-mcp-adapter`
 | pi-btw | [dbachelder/pi-btw](https://github.com/dbachelder/pi-btw) | `/btw` 旁支对话，不打断主任务 | `pi install npm:pi-btw` |
 | pi-fff | [dmtrKovalenko/fff](https://github.com/dmtrKovalenko/fff) | FFF 模糊文件与内容搜索 | `pi install npm:@ff-labs/pi-fff` |
 | pi-observability-plugin | [langfuse/pi-observability-plugin](https://github.com/langfuse/pi-observability-plugin) | 追踪到 Langfuse | `pi install npm:@langfuse/pi-observability-plugin` |
+| LangSmith | npm `@langchain/langsmith-pi-extension` | 会话 / 轮次 / 工具追踪到 LangSmith | `pi install npm:@langchain/langsmith-pi-extension` |
+| Braintrust | npm `@braintrust/pi-extension` | 自动 tracing 到 Braintrust | `pi install npm:@braintrust/pi-extension` |
 | pi-mcp-extension | npm `pi-mcp-extension` | 另一路 MCP client（**与 `pi-mcp-adapter` 二选一，勿双开**） | `pi install npm:pi-mcp-extension` |
 | @tintinweb/pi-subagents | npm `@tintinweb/pi-subagents` | Claude Code 风格子代理 UI（**与 `pi-subagents` 二选一，勿双开**） | `pi install npm:@tintinweb/pi-subagents` |
 

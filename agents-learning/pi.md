@@ -31,25 +31,29 @@ pi
 ## 核心增强（必装）
 
 ```bash
-pi install npm:pi-mcp-adapter
-# 装完：/mcp-adapter setup  → 接 GitHub / Notion / Context7 等
-
 pi install npm:pi-web-access   # 搜索、抓页、clone、PDF/YouTube（Exa 可无 key）
 pi install npm:pi-subagents    # 复杂任务拆子代理
+pi install npm:pi-context-view # 看清上下文占用（社区常驻推荐）
+
+# MCP：新版先试内置 `pi mcp add`；复杂场景再：
+# pi install npm:pi-mcp-adapter &&  # 然后 /mcp-adapter setup
 ```
 
-社区经验：日常 = **web + MCP + subagents** 就够；多装只会抢上下文。用 `pi config` 开关扩展。
+社区（含 X 近几天热帖）经验：日常常驻做减法 — **web-access + context-view**（可选 `pi-cc-extensions`）+ subagents；多装只会抢上下文。用 `pi config` 开关扩展。
 
-**勿双开：** `pi-mcp-extension` 与 `pi-mcp-adapter` 二选一；`@tintinweb/pi-subagents` 与 `pi-subagents` 二选一。
+**勿双开：** 内置 MCP ↔ `pi-mcp-adapter` ↔ `pi-mcp-extension`；`pi-subagents` ↔ `@tintinweb/pi-subagents`；`pi-browser-use` ↔ `pi-chrome`。
 
 ## 全栈加装
 
 ```bash
-pi install npm:pi-browser-use              # 真浏览器（Node ≥24 + Chrome）
+pi install npm:pi-browser-use              # 隔离自动化浏览器（Node ≥24 + Chrome）
+# 或用已登录日常 Chrome：
+# pi install npm:pi-chrome
+
 pi install npm:pi-vision-handoff           # 无视觉模型时处理截图/设计稿
-pi install npm:pi-lens                     # LSP / lint / 类型（前后端同仓）
+pi install -l npm:pi-lens                  # LSP：建议项目级 -l，勿全局常开
 # 或二选一：
-# pi install npm:@mrclrchtr/supi-code-intelligence
+# pi install -l npm:@mrclrchtr/supi-code-intelligence
 ```
 
 MCP 建议经 adapter 接：Context7（框架文档）、GitHub；Notion / Gmail 按需。
@@ -58,23 +62,31 @@ MCP 建议经 adapter 接：Context7（框架文档）、GitHub；Notion / Gmail
 
 ### 长会话推荐（仍按需）
 
-月下载量很高，长对话优先考虑；也可只用内置 `/compact`：
+优先用内置 `/compact`。`billion-context` / `billion-context-pi` 月下载高，但社区有反馈长会话仍会忘，别当银弹：
 
 ```bash
 pi install npm:billion-context
+# 或：pi install npm:billion-context-pi
 ```
 
 ## 第二档：按需体验（别进核心）
 
 | 包 | 说明 | 安装 |
 |---|---|---|
-| `pi-memory` | 跨会话记忆（daily logs / 长期记忆 / scratchpad） | `pi install npm:pi-memory` |
+| `pi-context-view` | 上下文占用可视化（常驻推荐，也可算核心增强） | `pi install npm:pi-context-view` |
+| `pi-chrome` | 已登录 Chrome（与 browser-use 按场景选） | `pi install npm:pi-chrome` |
+| `pi-agents` | 持久命名子代理 / 图编排 | `pi install npm:pi-agents` |
+| `pi-gpt-search` | Codex 独立搜索，省 GPT token | `pi install npm:pi-gpt-search` |
+| `pi-file-preview` / `pi-minimal-footer` | TUI 预览与极简 footer | `pi install npm:pi-file-preview` 等 |
+| `layermap` | 调用链 / 改动影响面 | `pi install npm:layermap` |
+| `pi-cc-extensions` | CC 风格 TUI（常驻可选） | `pi install npm:pi-cc-extensions` |
+| `pi-memory` | 跨会话记忆 | `pi install npm:pi-memory` |
 | `@narumitw/pi-plan-mode` 或 `@hank-warren/pi-plan-mode` | 只读规划（二选一） | `pi install npm:@narumitw/pi-plan-mode` |
 | `@juicesharp/rpiv-todo` + `rpiv-ask-user-question` | todo 浮层 + 结构化追问 | 见 plugins 清单 |
 | `pi-background-tasks` | 长跑 shell / 后台任务 | `pi install npm:pi-background-tasks` |
 | `@gotgenes/pi-permission-system` | 工具调用权限闸 | `pi install npm:@gotgenes/pi-permission-system` |
 
-状态栏 / 用量、plannotator、`pi-btw` 等仍见 plugins「其他常用包」。
+观测（Langfuse / LangSmith / Braintrust）与状态栏等见 plugins「其他常用包」。X 热帖参考：[小墨常驻组合](https://x.com/xiaomovps/status/2109857660904394878)、[观测选型](https://x.com/xiaomovps/status/2109901724634997127)、[oliviscusAI 起步包](https://x.com/oliviscusAI/status/2109836779042054267)。
 
 ## 配置落点
 
