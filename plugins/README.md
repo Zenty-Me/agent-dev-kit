@@ -6,7 +6,7 @@
 |---|---|---|
 | Claude Code | plugin marketplace（`/plugin`）、skills、hooks、MCP | [Claude Code](#claude-code) |
 | Codex（OpenAI Codex CLI） | plugin marketplace（`/plugins`、`codex plugin`）、skills、MCP、hooks | [Codex](#codex) |
-| Pi（pi coding agent） | pi packages（extensions / skills / prompts / themes，`pi install`）、MCP | [Pi](#pi) |
+| Pi（pi coding agent） | pi packages（`pi install`）、MCP adapter、AGENTS.md / APPEND_SYSTEM | [Pi](#pi) · [笔记](../agents-learning/pi.md) |
 | Cursor | Cursor Plugins / Agent Plugins（Customize 面板、Cursor Marketplace）、rules、MCP | [Cursor](#cursor) |
 | Gemini CLI | extensions（`gemini extensions install`） | [Gemini CLI](#gemini-cli) |
 | OpenCode | npm 插件（`opencode.json` 的 `plugin`）、本地插件目录 | [OpenCode](#opencode) |
@@ -267,21 +267,42 @@
 
 ## Pi
 
-机制（见 [earendil-works/pi 的 packages 文档](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md)，原 badlogic/pi-mono）：pi package 把 extensions、skills、prompt 模板、themes 打成一个包，从 npm、git 或本地路径安装：`pi install npm:<包名>`、`pi install git:github.com/<owner>/<repo>`；`pi list` 查看，`pi remove` 卸载；加 `-l` 写入项目级 `.pi/settings.json`；`pi -e npm:<包名>` 只在本次运行中试用。社区包可在 [pi.dev/packages](https://pi.dev/packages) 浏览。Pi 原生支持 MCP（`pi mcp add`），不需要额外装 MCP 适配器。扩展会执行代码，安装前先看源码。
+机制（见 [packages 文档](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md)；目录 [pi.dev/packages](https://pi.dev/packages)）：pi package 把 extensions、skills、prompt、themes 打成包。安装：`pi install npm:<包名>` / `pi install git:github.com/<owner>/<repo>`；`pi list` / `pi remove`；`-l` 写项目级 `.pi/settings.json`；`pi -e npm:<包名>` 仅本次试用。扩展会执行代码，装前看源码。
+
+Pi 也有原生 MCP（`pi mcp add`），但社区主路径是 **`pi-mcp-adapter`**（下载量最高），装完跑 `/mcp-adapter setup`。更细的安装与配置见 [agents-learning/pi.md](../agents-learning/pi.md)。
+
+### 主生产力起步（核实：2026-10-14）
+
+本体：`curl -fsSL https://pi.dev/install.sh | sh` → `pi` → `/login` → `/model`。
+
+| 档位 | 包 | 说明 | 安装 |
+|---|---|---|---|
+| ★ 核心 | [pi-mcp-adapter](https://pi.dev/packages/pi-mcp-adapter) | 接 MCP（GitHub / Notion / Context7 等）；目录下载量领先 | `pi install npm:pi-mcp-adapter` 后 `/mcp-adapter setup` |
+| ★ 核心 | [pi-web-access](https://www.npmjs.com/package/pi-web-access) | 搜索、抓页、clone GitHub、PDF/YouTube；Exa 可无 key | `pi install npm:pi-web-access` |
+| ★ 核心 | [pi-subagents](https://www.npmjs.com/package/pi-subagents) | 子代理委派；复杂任务拆开做 | `pi install npm:pi-subagents` |
+| 全栈 | [pi-browser-use](https://www.npmjs.com/package/pi-browser-use) | Chrome DevTools MCP 浏览器自动化（需 Node ≥24 + Chrome） | `pi install npm:pi-browser-use` |
+| 全栈 | [pi-vision-handoff](https://www.npmjs.com/package/pi-vision-handoff) | 无视觉模型时：用视觉模型描述截图/设计稿再交回 | `pi install npm:pi-vision-handoff` |
+| 全栈 | [pi-lens](https://www.npmjs.com/package/pi-lens) | LSP / lint / format / 类型检查 | `pi install npm:pi-lens` |
+| 全栈备选 | [@mrclrchtr/supi-code-intelligence](https://www.npmjs.com/package/@mrclrchtr/supi-code-intelligence) | LSP + AST 导航/诊断/重构（与 pi-lens 二选一即可） | `pi install npm:@mrclrchtr/supi-code-intelligence` |
+| 按需 | [billion-context](https://www.npmjs.com/package/billion-context) | 长会话上下文压缩（也可用内置 `/compact`） | `pi install npm:billion-context` |
+
+> 日常够用 = web + MCP + subagents。全栈再加 browser +（lens 或 supi）+ 按需 vision。别一口气堆包，上下文会被抢光。
+
+配置落点：`~/.pi/agent/`（项目用 `.pi/`）— `settings.json`、`mcp.json`、`APPEND_SYSTEM.md`；仓根 `AGENTS.md`；可选 `~/.pi/web-search.json`。用 `pi config` 开关扩展。
+
+### 其他常用包
 
 | 包 | 来源 | 说明 | 安装 |
 |---|---|---|---|
-| ★ pi-subagents | [nicobailon/pi-subagents](https://github.com/nicobailon/pi-subagents) | 子 agent 委派和脚本化的多 agent 工作流 | `pi install npm:pi-subagents` |
-| ★ pi-web-access | [nicobailon/pi-web-access](https://github.com/nicobailon/pi-web-access) | 网页搜索、抓取 URL、克隆 GitHub 仓库、提取 PDF | `pi install npm:pi-web-access` |
-| ★ pi-lens | [apmantza/pi-lens](https://github.com/apmantza/pi-lens) | 实时代码反馈：LSP、linter、formatter、类型检查 | `pi install npm:pi-lens` |
 | pi-powerline-footer | [nicobailon/pi-powerline-footer](https://github.com/nicobailon/pi-powerline-footer) | powerline 风格状态栏 | `pi install npm:pi-powerline-footer` |
-| plannotator（Pi 扩展） | [backnotprop/plannotator](https://github.com/backnotprop/plannotator) | 计划审阅与批注；用 `--plan` 启动或切换 `/plannotator-plan-mode` | `pi install npm:@plannotator/pi-extension` |
-| rpiv-todo | [juicesharp/rpiv-mono](https://github.com/juicesharp/rpiv-mono) | 给模型用的 todo 列表，以实时浮层显示，`/reload` 后仍保留 | `pi install npm:@juicesharp/rpiv-todo` |
-| rpiv-ask-user-question | [juicesharp/rpiv-mono](https://github.com/juicesharp/rpiv-mono) | 模型需要澄清时弹出结构化问卷，代替猜测 | `pi install npm:@juicesharp/rpiv-ask-user-question` |
-| pi-btw | [dbachelder/pi-btw](https://github.com/dbachelder/pi-btw) | 用 `/btw` 开一个并行的旁支对话，不打断主任务 | `pi install npm:pi-btw` |
+| plannotator（Pi 扩展） | [backnotprop/plannotator](https://github.com/backnotprop/plannotator) | 计划审阅与批注；`--plan` 或 `/plannotator-plan-mode` | `pi install npm:@plannotator/pi-extension` |
+| rpiv-todo | [juicesharp/rpiv-mono](https://github.com/juicesharp/rpiv-mono) | 模型用 todo，实时浮层，`/reload` 后仍保留 | `pi install npm:@juicesharp/rpiv-todo` |
+| rpiv-ask-user-question | [juicesharp/rpiv-mono](https://github.com/juicesharp/rpiv-mono) | 需要澄清时弹出结构化问卷 | `pi install npm:@juicesharp/rpiv-ask-user-question` |
+| pi-btw | [dbachelder/pi-btw](https://github.com/dbachelder/pi-btw) | `/btw` 旁支对话，不打断主任务 | `pi install npm:pi-btw` |
 | pi-permission-system | [gotgenes/pi-packages](https://github.com/gotgenes/pi-packages) | 工具调用权限控制 | `pi install npm:@gotgenes/pi-permission-system` |
-| pi-fff | [dmtrKovalenko/fff](https://github.com/dmtrKovalenko/fff) | 基于 FFF 的模糊文件和内容搜索 | `pi install npm:@ff-labs/pi-fff` |
-| pi-observability-plugin | [langfuse/pi-observability-plugin](https://github.com/langfuse/pi-observability-plugin) | 把提示词、agent 轮次、工具调用追踪到 Langfuse | `pi install npm:@langfuse/pi-observability-plugin` |
+| pi-fff | [dmtrKovalenko/fff](https://github.com/dmtrKovalenko/fff) | FFF 模糊文件与内容搜索 | `pi install npm:@ff-labs/pi-fff` |
+| pi-observability-plugin | [langfuse/pi-observability-plugin](https://github.com/langfuse/pi-observability-plugin) | 追踪到 Langfuse | `pi install npm:@langfuse/pi-observability-plugin` |
+| pi-mcp-extension | npm `pi-mcp-extension` | 另一路 MCP client（与 adapter 二选一即可） | `pi install npm:pi-mcp-extension` |
 
 ## Cursor
 

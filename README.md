@@ -9,7 +9,7 @@ AI 协同开发工具箱：精选 Claude Code / Agent skills、实用插件与�
 | **skills/** | 从各官方仓库精选的开发类 skill，可通过 Claude Code 插件市场一键安装 |
 | **plugins/** | 推荐的 Claude Code 插件清单（不存源码，只记安装方式） |
 | **prompts/** | 可直接当系统提示词使用的角色提示词 |
-| **agents-learning/** | Claude Code、Hermes 等工具的使用笔记 |
+| **agents-learning/** | Claude Code、Pi、Hermes 等工具的使用笔记 |
 
 ## 项目结构
 
@@ -136,6 +136,7 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 ## 使用笔记
 
 - [Claude Code](agents-learning/claude-code.md)：优先用本仓库 / 官方 marketplace 安装；附资源站点
+- [Pi](agents-learning/pi.md)：主生产力起步（MCP / web / subagents）与全栈加装
 - [Hermes](agents-learning/hermes.md)：常用命令（模型配置、会话管理）
 
 ## 维护
