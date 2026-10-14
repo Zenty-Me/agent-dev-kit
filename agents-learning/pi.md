@@ -89,6 +89,15 @@ pi install npm:billion-context
 # 或：pi install npm:billion-context-pi
 ```
 
+## 规划/执行分模型
+
+本体**没有** Claude Code 式 `opusplan` 一键切换；规划用强模型、干活用便宜/快模型，靠子代理或 Skill 绑模型（核实：2026-10-14）。
+
+1. **`pi-subagents` frontmatter**（已装则跳过）：`pi install npm:pi-subagents`。在 agent markdown 里给角色写 `model:` + `thinking:`（如自定义 `planner` 用强模型、`worker`/`scout` 用便宜/快）；再 chain：`scout → planner → worker`（或官方推荐 `scout → worker → reviewer`）。内置无 `planner`，需自建 agent 文件。模型细节：[pi-subagents models](https://www.npmjs.com/package/pi-subagents)。
+2. **Skill 激活时切模型**：`pi install npm:@felipefontoura/pi-skill-model-handoff`，Skill 的 `SKILL.md` frontmatter 写 `model:` / `thinking:`，加载 Skill 时自动切换 — [文章](https://felipefontoura.com/articles/pi-skill-model-handoff/)。
+
+社区常见：强模型规划、中档改码、轻量跑腿。对比 Claude Code 的 `opusplan` 见 [claude-code.md](claude-code.md)。
+
 ## 第二档：按需体验（别进核心）
 
 | 包 | 说明 | 安装 |
