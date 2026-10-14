@@ -138,6 +138,7 @@ npx skills add Zenty-Me/agent-dev-kit -s karpathy-guidelines -g   # 全局安装
 - [Claude Code](agents-learning/claude-code.md)：优先用本仓库 / 官方 marketplace 安装；附资源站点
 - [Pi](agents-learning/pi.md)：主生产力起步（MCP / web / subagents）与全栈加装
 - [Pi 自助 bootstrap](agents-learning/pi-bootstrap.md)：可直接丢给 Pi 的安装配置提示词
+- [AGENTS.md / CLAUDE.md 写法](agents-learning/project-instructions.md)：短硬可验证的项目指令文件
 - [Hermes](agents-learning/hermes.md)：常用命令（模型配置、会话管理）
 
 ## 维护
