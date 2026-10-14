@@ -56,6 +56,34 @@ npx tweakcc                         # 可选：主题 / spinner / 输入框样�
 
 官方：[model-config](https://code.claude.com/docs/en/model-config)、[advisor](https://code.claude.com/docs/en/advisor)。Pi 侧无 `opusplan`、靠 subagents / skill-model-handoff，见 [pi.md](pi.md)。跨 harness 把对方包成工具：见 [cross-agent.md](cross-agent.md)。
 
+## 子 agent 配置
+
+写 Markdown + YAML frontmatter 到 `.claude/agents/`（项目）或 `~/.claude/agents/`（个人）。必填 `name`、`description`；正文=系统提示。常用：`tools` / `disallowedTools`、`model`（sonnet/haiku/inherit…）、`isolation: worktree`、`background`、`memory`（核实：2026-10-15）。
+
+最小例子：
+
+```markdown
+---
+name: code-reviewer
+description: 改完代码后主动做安全与质量审查。Use proactively.
+tools: Read, Grep, Glob, Bash
+model: sonnet
+---
+你是代码审查员。看 diff，按严重程度输出问题与改法。
+```
+
+调用：自然语言点名、`@` agent，或 `claude --agent code-reviewer`。内置：Explore / Plan / general-purpose。
+
+注意：
+
+- 新版 `/agents` **不再**开创建向导，直接写文件或让 Claude 写
+- 子 agent **看不到**主会话历史，路由全靠 `description`
+- 社区：编排用强模型，干活用便宜子 agent；**显式写 `model:`**，别依赖静默默认
+
+教程：[官方 sub-agents](https://code.claude.com/docs/en/sub-agents) · [Builder.io](https://www.builder.io/blog/claude-code-subagents) · [Agent Notebook](https://www.agentnotebook.dev/tutorials/claude-code-subagents)
+
+分模型口（`opusplan` / 子代理 model / `/advisor`）见上一节；跨 harness 见 [cross-agent.md](cross-agent.md)。
+
 ## 其他资源站点
 
 - https://www.aitmpl.com/：Claude Code 相关 skills、plugins、Commands、Settings、Hooks 等资源聚合
