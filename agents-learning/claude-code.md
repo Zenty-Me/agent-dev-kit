@@ -34,7 +34,7 @@ npx skills add Zenty-Me/agent-dev-kit -s vercel-react-best-practices -g
 
 ## 体验向起步（hooks / 状态栏 / 记忆）
 
-完整清单与安装命令见 [../plugins/README.md](../plugins/README.md) 的「Agent 使用体验」。最小组合：
+完整清单与安装命令见 [../plugins/README.md](../plugins/README.md) 的「Agent 使用体验」。最小组合（状态栏：纯 CC；双修见下方 Statusline 选型）：
 
 ```bash
 npx -y ccstatusline@latest          # 状态栏（写入 ~/.claude/settings.json）
@@ -45,6 +45,17 @@ npx tweakcc                         # 可选：主题 / spinner / 输入框样�
 ```
 
 原生能力：`/statusline`、`/hooks`、settings 里的 `statusLine` 与 `Notification` hook。文档：[statusline](https://code.claude.com/docs/en/statusline)、[hooks](https://code.claude.com/docs/en/hooks-guide)。
+
+### Statusline 选型
+
+按 **Claude Code + Pi 双修** 场景排序（核实：2026-10-15）。官方接口：[statusline](https://code.claude.com/docs/en/statusline)。Pi 终端渲染见 [pi.md](pi.md)。
+
+1. **双修首选**：[callmemorgan/claude-statusline](https://github.com/callmemorgan/claude-statusline) — 同时盖 Claude Code / Pi / Antigravity。Pi：`pi install npm:@morgan.rebrand/claude-statusline`；两边可统一风格（Pi 上额度/cost 段会藏，只留 model/context/git 等）
+2. **纯 Claude Code 主流**：[sirmalloc/ccstatusline](https://github.com/sirmalloc/ccstatusline)（约 1.3 万★，TUI 配主题）：`npx -y ccstatusline@latest`（即上方最小组合）
+3. **信息密度**：[erwint/claude-code-statusline](https://github.com/erwint/claude-code-statusline) — Agent/Todo/Tool、5h·周额度等；`/plugin marketplace add erwint/claude-code-statusline` 再 `/plugin install cc-statusline@cc-statusline`（仓小，不是社区默认）
+4. **备选**：[gfreschi/claude-code-statusline](https://github.com/gfreschi/claude-code-statusline)（颜值/Powerline）、[OpenAnalystInc/Statusline](https://github.com/OpenAnalystInc/Statusline)（`npx skill-statusline install`）、[rz1989s/claude-code-statusline](https://github.com/rz1989s/claude-code-statusline)（约 480★ 壳脚本）
+
+结论：双修 → callmemorgan；纯 CC → ccstatusline。下文 Context Monitor 是 aitmpl 模板示例，别当选型默认。
 
 ## 规划/执行分模型
 
