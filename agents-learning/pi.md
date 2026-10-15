@@ -20,6 +20,23 @@ pi
 # /login 绑模型；/model 选默认（常见：日常 DeepSeek，重活再切强模型）
 ```
 
+### 会话恢复
+
+默认自动存会话（除非 `--no-session`）；按**当前工作目录**分组；默认目录 `~/.pi/agent/sessions/`。[Sessions](https://pi.dev/docs/latest/sessions)（核实：2026-10-15）。
+
+```bash
+pi --continue          # 或 -c：续本目录最近一次
+pi --resume            # 或 -r：打开选择器（会话内等价 /resume）
+pi --session <path|id> # 已知路径或 ID
+pi --fork              # 从已有会话 fork 再进交互
+```
+
+会话内：`/session`（当前文件/ID/消息数/token/费用）；`/name` 或启动 `--name`；`/new`；`/resume`；分支用 `/tree` · `/fork` · `/clone`。
+
+存储：`--session-dir` / `PI_CODING_AGENT_SESSION_DIR` / settings `sessionDir`（CLI 优先）。**`--no-session` 瞬时会话退出后无法恢复**。
+
+上下文：模型只吃当前活动分支；可 `/compact`；导出 `/export`、分享 `/share`。
+
 ### 内置工作流（常用快捷键 / 命令）
 
 | 操作 | 作用 |
@@ -30,7 +47,7 @@ pi
 | `Alt+Enter` | 排队下一条 |
 | `/tree` | 会话树 |
 | `/compact` | 压缩上下文 |
-| `/resume` | 恢复会话 |
+| `/resume` | 恢复会话（见上「会话恢复」；CLI：`pi --continue` / `--resume`） |
 | `/new` | 新会话 |
 
 更新已装包：`pi update --all`。
