@@ -171,6 +171,21 @@ pi install npm:billion-context
 4. **观测**：Langfuse / LangSmith / Braintrust — 短提，包名与安装见 [../plugins/README.md](../plugins/README.md)「其他常用包」
 5. **接 Antigravity**：走**官方 ACP**（如 `pi-antigravity-acp-provider` / bridge 的 ACP 路径），别逆向 OAuth、别复用非官方 token 抓取
 
+## 常见坑
+
+### Opus 5.5：`Error: 400`（adaptive thinking）
+
+现象：`claude-opus-5-5 requires adaptive thinking; omit thinking or use thinking.type=adaptive and output_config.effort`。界面可能仍显示 DeepSeek，但某步（Skill 切模型 / 子 agent / 同步）已打到 Opus 5.5，并带了旧 thinking 参数。
+
+根因：Opus 5.5 API 硬规则——不能关思考、不能用 `budget_tokens`；只能省略 `thinking`，或 `thinking.type=adaptive`，深度用 `output_config.effort`。[官方迁移](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide)；Pi 模型页标 `forceAdaptiveThinking: true`：[claude-opus-5-5](https://pi.dev/models/anthropic/claude-opus-5-5)。（核实：2026-10-15）
+
+解法（按优先级）：
+
+1. `pi update --all`（旧版把思考关打成 disabled 会炸）
+2. 别对 Opus 5.5 开 thinking=off：`Shift+Tab` 别停在 off；用 low/medium。Skill / `.pi/agents/*.md` / `agentOverrides` 里若有 `thinking: false`、`off`、`enabled`+`budget_tokens`，删掉，改成 `thinking: low|medium|high` 或只写 `model:`
+3. 临时绕过：别切 Opus 5.5，用 Sonnet / Opus 5 / DeepSeek
+4. 仍挂：查代理是否改坏 thinking；可 `/bug`
+
 ## 操作速记
 
 - 快捷键 / `/compact` / `/resume`：见上方表格；包更新：`pi update --all`
