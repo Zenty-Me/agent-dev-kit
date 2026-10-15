@@ -186,6 +186,19 @@ pi install npm:billion-context
 3. 临时绕过：别切 Opus 5.5，用 Sonnet / Opus 5 / DeepSeek
 4. 仍挂：查代理是否改坏 thinking；可 `/bug`
 
+### Tool Bash / Read not found（工具名大小写）
+
+现象：模型调 `Bash` / `Read`（Claude Code 大写名，参数还可能是 `file_path`），Pi 报 `Tool Bash not found` / `Tool Read not found`。界面像工具全丢。这和 Opus 5.5 adaptive thinking 的 400 **不是**同一类坑。
+
+根因：Pi 注册的是小写工具名（`bash` / `read` 等），严格匹配；模型被 Claude Code 习惯或 OAuth/代理伪装带偏后会幻觉大写名。官方不在 Pi 里做大小写归一，要修 provider / 会话侧。参考：[pi#638](https://github.com/earendil-works/pi/issues/638)。（核实：2026-10-15）
+
+解法（按优先级）：
+
+1. `pi update --all` 后**新开一局**（别在刚炸过 thinking 的 transcript 里续聊）
+2. 检查 `~/.pi/agent/settings.json` 的 `defaultTools`：加能力用 `"+codemode"` 这种追加，不要整表覆盖把原生工具清掉（社区：[chasen_liao 帖](https://x.com/chasen_liao/status/2105137326938878198)）
+3. AGENTS.md / Skill 里别教 Claude 那套 `Bash`/`Read`/`file_path`
+4. 若走 Claude OAuth/代理伪装：确认请求改大写后响应能映回小写，否则模型会一直幻觉 Claude 工具名
+
 ## 操作速记
 
 - 快捷键 / `/compact` / `/resume`：见上方表格；包更新：`pi update --all`
