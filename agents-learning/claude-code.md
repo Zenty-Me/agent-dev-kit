@@ -95,6 +95,43 @@ model: sonnet
 
 分模型口（`opusplan` / 子代理 model / `/advisor`）见上一节；跨 harness 见 [cross-agent.md](cross-agent.md)。
 
+## 多会话分工
+
+核实日期：**2026-10-15**。多开会话改同一仓时的落点、全局规则与「领航」调度（仓侧笔记，非整页粘贴）。
+
+### 落点与官方对照
+
+- **全局纪律**：`~/.claude/CLAUDE.md`（用户级）。仓内共享用项目 `CLAUDE.md` / `AGENTS.md`（Codex 读 AGENTS；共用时 `CLAUDE.md` 首行 `@AGENTS.md`）。官方：[memory](https://code.claude.com/docs/en/memory)
+- **并行改同一仓**：优先 [git worktrees](https://code.claude.com/docs/en/worktrees)，每会话划文件边界
+- **官方编排（可选）**：[Agent teams](https://code.claude.com/docs/en/agent-teams)（`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`）一会话当 lead；更轻用跨会话消息 / 子 agent。手动「领航」多开会话与 Agent teams **勿两套同时当老板**
+
+### 全局规则（建议写入用户级 CLAUDE.md）
+
+1. **先定稿再动手**
+2. **主会话**：规划、定边界、核对证据、终审与汇报；小改自做；整块派出须写清任务/边界/验收
+3. **按定稿程度**：未定 UI → 主会话快迭代+截图；已定模型/接口/测试/批量 → 默认可派 Codex 后台
+4. **Codex 优先省额度**：代码/测试/批量/只读核查 → `codex exec`；写作与设计仍用 Claude
+5. **调用 Codex**（推理默认 high；算钱/并发可用 xhigh。Fast 现名常写 `service_tier="fast"`，旧 `priority` 仍见；**注意**：`codex exec` 上 Fast 可能被服务端**静默回落**。可用 `--worktree`。任务写独立文件后台跑，等完成通知勿轮询；Codex 不提交，主会话提交。禁 Codex 屏幕/浏览器插件；浏览器只用无头）：
+
+```bash
+codex exec --skip-git-repo-check -m <模型> \
+  -c 'service_tier="priority"' -c model_reasoning_effort=high \
+  "…任务…"
+```
+
+6. **子代理分档**：haiku=查库/日志/测/截图/文案；sonnet=多数实现与复核；opus=账务/退款/并发/数据模型
+7. **涉钱交叉复核**；阶段末写交接开新会话；生产写入需明确授权；自起长驻记 PID/端口，结束即停
+
+### 「领航」调度（手动多开，如 agterm）
+
+- **角色**：只派活不动手；写清任务/边界/验收；只读盘点、核对、汇总、汇报
+- **自治可直接定**：本地 commit、清本地分支、DEV、只读核查、派 Codex、不花钱不外发默认项
+- **必先问**：远端 push/PR/评审/远端分支/仓设置、生产写入、花钱、对外发布、业务方向、退出或关会话
+- **转述**：原话转述；领航建议标「领航建议」；规则只发相关会话不群发
+- **巡检**：卡住直接催；汇报分「需你回复」与「状态变化」
+
+跨 harness 把对方包成工具见 [cross-agent.md](cross-agent.md)；子 agent 见上一节。
+
 ## 其他资源站点
 
 - https://www.aitmpl.com/：Claude Code 相关 skills、plugins、Commands、Settings、Hooks 等资源聚合
